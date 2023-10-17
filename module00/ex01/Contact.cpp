@@ -5,7 +5,6 @@ void Contact::IndixInit(Contact *contacts){
     contacts->index = -1;
 }
 
-
 std::string Contact::StringResazer(std::string str){
 
     if (str.length() > 10)
@@ -23,34 +22,46 @@ void Contact::Search(Contact contacts){
     }
 }
 
+std::string Contact::GetInput(std::string str){
+
+    int empty = true;
+    std::string input;
+
+    while (empty){
+        std::cout << str << std::flush;
+        std::getline(std::cin, input);
+        if (!input.empty())
+            empty = false;
+    }
+    return (input);
+}
+
+int Contact::IsDigit(std::string str){
+
+    for (int i = 0; str[i]; i++){
+        if (!std::isdigit(str[i]))
+            return (false);
+    }
+    return (true);
+}
+
 void Contact::ContactInit(Contact *contact, int numb){
 
-    int digit = true;
+    int IsDigit = true;
 
-    std::cout << "First Name: ";
-    std::cin >> contact->FirstName;
-
-    std::cout << "Last Name: ";
-    std::cin >> contact->LastName;
-
-    std::cout << "Nick Name: ";
-    std::cin >> contact->NickName;
-
-    std::cout << "Phone Number: ";
-    while (digit)
-    {
-        std::cin >> contact->PhoneNumber;
-        if (std::cin.fail())
-        {
-            std::cout << "ERROR: THIS FAILED MUST BE ALL DIGITS!" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Phone Number: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    contact->FirstName = GetInput("First Name: ");
+    contact->LastName = GetInput("Last Name: ");
+    contact->NickName = GetInput("Nick Name: ");
+    contact->PhoneNumber = GetInput("Phone Number: ");
+    while (IsDigit){
+        if (!this->IsDigit(contact->PhoneNumber)){
+        std::cout << "ERROR: THIS FIELD MUST CONTAIN ONLY DIGITS!" << std::endl;
+        contact->PhoneNumber = GetInput("Phone Number: ");
         }
         else
-            digit = false;
+            IsDigit = false;
     }
-    std::cout << "Darkest Secret: ";
-    std::cin >> contact->DarkestSecret;
+    contact->DarkestSecret = GetInput("Darkest Secret: ");
     index = numb;
 }

@@ -11,11 +11,12 @@ class Contact{
         std::string FirstName;
         std::string LastName;
         std::string NickName;
-        int PhoneNumber;
+        std::string PhoneNumber;
         std::string DarkestSecret;
         int index;
         std::string StringResazer(std::string str);
-        int IsDigit(int number);
+        std::string GetInput(std::string str);
+        int IsDigit(std::string str);
     public:
         void ContactInit(Contact *contacts, int numb);
         void Search(Contact contacts);
