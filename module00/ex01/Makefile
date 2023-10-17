@@ -2,7 +2,7 @@ CC = g++
 
 OFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = PhoneBook.cpp Contact.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 
 NAME = megaphone
 
