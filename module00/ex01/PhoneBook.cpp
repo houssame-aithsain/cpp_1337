@@ -2,9 +2,10 @@
 
 int PhoneBook::PhoneBook::numb = 0;
 
-void Phonebook::ContactsEraser(void){
+void PhoneBook::init(void){
 
-    
+    for (int i = 0; i < 9; i++)
+        contacts[i].IndixInit(&contacts[i]);
 }
 
 void PhoneBook::Usage()

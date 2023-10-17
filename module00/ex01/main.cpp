@@ -5,7 +5,7 @@ int main(void)
     PhoneBook Book;
     std::string str;
 
-    book.ContactsEraser();
+    Book.init();
     Book.Usage();
     while (str.compare("EXIT"))
     {
@@ -13,7 +13,6 @@ int main(void)
             Book.AddContact();
         if (!str.compare("SEARCH"))
             Book.SearchForContact();
-        str.erase();
         std::cin >> str;
     }
 }

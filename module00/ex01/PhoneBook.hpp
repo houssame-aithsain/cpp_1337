@@ -13,7 +13,7 @@ class PhoneBook{
         void Usage(void);
         void AddContact(void);
         void SearchForContact(void);
-        void ContactsEraser(void);
+        void init(void);
 };
 
 #endif /*PHONEBOOK_HPP*/
