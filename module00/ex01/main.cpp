@@ -13,7 +13,7 @@ int main(void)
             Book.AddContact();
         if (!str.compare("SEARCH"))
             Book.SearchForContact();
-        std::cout << std::endl << "=>\t";
+        std::cout << std::endl << "HOME$>\t";
         std::cin >> str;
         std::cout << std::endl;
         if (std::cin.eof())

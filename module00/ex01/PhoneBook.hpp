@@ -4,14 +4,16 @@
 #include <iostream>
 #include "Contact.hpp"
 
+#define CHECK 0
+#define SEARCH 1
 
 class PhoneBook{
     private:
         static int numb;
-        Contact contacts[9];
+        Contact contacts[8];
     public:
-        void Usage(void);
         void AddContact(void);
+        void Usage(void);
         void SearchForContact(void);
         void init(void);
 };

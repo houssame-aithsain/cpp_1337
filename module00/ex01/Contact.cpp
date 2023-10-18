@@ -12,16 +12,22 @@ std::string Contact::StringResazer(std::string str){
     return (str);
 }
 
-
-void Contact::SearchIndex(Contact contacts){
+int Contact::SearchIndex(Contact contacts, int flag){
 
     if (contacts.index != -1){
-        std::cout << "Fisrt Name:     " << contacts.FirstName << std::endl;
-        std::cout << "Last Name:      " << contacts.LastName << std::endl;
-        std::cout << "Nick Name:      " << contacts.NickName << std::endl;
-        std::cout << "Phone Number:   " << contacts.PhoneNumber << std::endl;
-        std::cout << "Darkest Secret: " << contacts.DarkestSecret << std::endl;
+        if (!flag)
+            return (true);
+        std::cout << std::endl;
+        std::cout << "√ Fisrt Name:     " << contacts.FirstName << std::endl;
+        std::cout << "√ Last Name:      " << contacts.LastName << std::endl;
+        std::cout << "√ Nick Name:      " << contacts.NickName << std::endl;
+        std::cout << "√ Phone Number:   " << contacts.PhoneNumber << std::endl;
+        std::cout << "√ Darkest Secret: " << contacts.DarkestSecret << std::endl;
+        return (true);
     }
+    if (!flag)
+        return (false);
+    return (false);
 }
 
 void Contact::Search(Contact contacts){

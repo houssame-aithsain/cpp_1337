@@ -18,7 +18,7 @@ class Contact{
     public:
         void Search(Contact contacts);
         void IndixInit(Contact *contacts);
-        void SearchIndex(Contact contacts);
+        int SearchIndex(Contact contacts, int flag);
         std::string GetInput(std::string str);
         void SetFname(std::string SfirstName){
             FirstName = SfirstName;
