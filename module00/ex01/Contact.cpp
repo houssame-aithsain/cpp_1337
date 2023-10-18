@@ -22,6 +22,20 @@ void Contact::Search(Contact contacts){
     }
 }
 
+std::string trim(std::string line)
+{
+    std::string newString;
+
+    for (char ch : line)
+    {
+        if (ch == '\n' || ch == '\r')
+            continue;
+        newString += ch;
+    }
+
+    return newString;
+}
+
 std::string Contact::GetInput(std::string str){
 
     int empty = true;
@@ -30,6 +44,7 @@ std::string Contact::GetInput(std::string str){
     while (empty){
         std::cout << str << std::flush;
         std::getline(std::cin, input);
+        input = trim(input);
         if (!input.empty())
             empty = false;
     }
