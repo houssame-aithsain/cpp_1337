@@ -12,28 +12,27 @@ std::string Contact::StringResazer(std::string str){
     return (str);
 }
 
-void Contact::Search(Contact contacts){
+
+void Contact::SearchIndex(Contact contacts){
 
     if (contacts.index != -1){
-        std::cout << contacts.index << " | ";
-        std::cout << std::setw(10) << this->StringResazer(contacts.FirstName) << " | ";
-        std::cout << std::setw(10) << this->StringResazer(contacts.LastName) << " | ";
-        std::cout << std::setw(10) << this->StringResazer(contacts.NickName) << std::endl;
+        std::cout << "Fisrt Name:     " << contacts.FirstName << std::endl;
+        std::cout << "Last Name:      " << contacts.LastName << std::endl;
+        std::cout << "Nick Name:      " << contacts.NickName << std::endl;
+        std::cout << "Phone Number:   " << contacts.PhoneNumber << std::endl;
+        std::cout << "Darkest Secret: " << contacts.DarkestSecret << std::endl;
     }
 }
 
-std::string trim(std::string line)
-{
-    std::string newString;
+void Contact::Search(Contact contacts){
 
-    for (char ch : line)
-    {
-        if (ch == '\n' || ch == '\r')
-            continue;
-        newString += ch;
+    if (contacts.index != -1){
+        std::cout << std::setw(10) << contacts.index << " | ";
+        std::cout << std::setw(10) << this->StringResazer(contacts.FirstName) << " | ";
+        std::cout << std::setw(10) << this->StringResazer(contacts.LastName) << " | ";
+        std::cout << std::setw(10) << this->StringResazer(contacts.NickName) << "|" << std::endl;
+        std::cout << "==================================================" << std::endl;
     }
-
-    return newString;
 }
 
 std::string Contact::GetInput(std::string str){
@@ -44,7 +43,8 @@ std::string Contact::GetInput(std::string str){
     while (empty){
         std::cout << str << std::flush;
         std::getline(std::cin, input);
-        input = trim(input);
+        if (std::cin.eof())
+            exit(-99);
         if (!input.empty())
             empty = false;
     }

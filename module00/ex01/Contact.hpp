@@ -21,6 +21,7 @@ class Contact{
         void ContactInit(Contact *contacts, int numb);
         void Search(Contact contacts);
         void IndixInit(Contact *contacts);
+        void SearchIndex(Contact Contacts);
 };
 
 #endif /*CONTACT_HPP*/

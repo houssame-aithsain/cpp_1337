@@ -4,7 +4,7 @@ int PhoneBook::PhoneBook::numb = 0;
 
 void PhoneBook::init(void){
 
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 8; i++)
         contacts[i].IndixInit(&contacts[i]);
 }
 
@@ -22,13 +22,33 @@ void PhoneBook::AddContact()
 {
     contacts[numb].ContactInit(&contacts[numb], numb);
     numb++;
-    if (numb > 8)
+    if (numb > 7)
         numb = 0;
 }
 
 void PhoneBook::SearchForContact(){
-    Contact ccontacts;
 
-    for (int i = 0; i < 9; i++)
+    Contact ccontacts;
+    int index = -1;
+
+    std::cout << "==================================================" << std::endl;
+    std::cout << "     Index |" << " First Name |" << " Last Name  |" << " Nick Name |" << std::endl;
+    std::cout << "==================================================" << std::endl;
+    for (int i = 0; i < 8; i++)
         ccontacts.Search(contacts[i]);
+    while (index > 7 || index < 0){
+        std::cout << "Enter the index of the contact you want to display: ";
+        std::cin >> index;
+        if (std::cin.eof())
+            exit(-9);
+        if (std::cin.fail()){
+            std::cin.clear();
+            std::cout << "ERROR: wrong input!" << std::endl;
+            return ;
+        }
+        if (index >= 0 && index < 8)
+            ccontacts.SearchIndex(contacts[index]);
+        else
+            std::cout << "Out of range!" << std::endl;
+    }
 }
