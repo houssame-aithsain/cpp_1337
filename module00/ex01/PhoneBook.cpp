@@ -12,10 +12,11 @@ void PhoneBook::Usage()
 {
     std::cout << "Welcome to your PhoneBook." << std::endl;
     std::cout << "Please choose one of theas:" << std::endl;
-    std::cout << "------------------------------" << std::endl;
-    std::cout << "ADD: To ADD a contact." << std::endl;
-    std::cout << "SEARCH: To SEACRH for contact." << std::endl;
-    std::cout << "EXIT: To EXIT PhoneBook :( ." << std::endl;
+    std::cout << "______________________________+" << std::endl;
+    std::cout << "ADD: To ADD a contact.        |" << std::endl;
+    std::cout << "SEARCH: To SEACRH for contact.|" << std::endl;
+    std::cout << "EXIT: To EXIT PhoneBook :( .  |" << std::endl;
+    std::cout << "______________________________|" << std::endl << std::endl;
 }
 
 void PhoneBook::AddContact()
@@ -43,7 +44,7 @@ void PhoneBook::SearchForContact(){
     for (int i = 0; i < 8; i++)
         ccontacts.Search(contacts[i]);
     while (index > 7 || index < 0){
-        std::cout << "Enter the index of the contact you want to display: ";
+        std::cout << "Enter index of the contact you want to display: ";
         std::cin >> index;
         if (std::cin.eof())
             exit(-9);

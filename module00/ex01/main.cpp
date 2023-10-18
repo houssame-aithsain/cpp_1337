@@ -12,8 +12,10 @@ int main(void)
         if (!str.compare("ADD"))
             Book.AddContact();
         if (!str.compare("SEARCH"))
-            Book.SearchForContact();     
+            Book.SearchForContact();
+        std::cout << std::endl << "=>\t";
         std::cin >> str;
+        std::cout << std::endl;
         if (std::cin.eof())
             exit(0);
         if (std::cin.fail()){
