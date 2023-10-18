@@ -20,7 +20,13 @@ void PhoneBook::Usage()
 
 void PhoneBook::AddContact()
 {
-    contacts[numb].ContactInit(&contacts[numb], numb);
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    contacts[numb].SetFname(contacts[numb].GetInput("First Name: "));
+    contacts[numb].SetLname(contacts[numb].GetInput("Last Name: "));
+    contacts[numb].SetNname(contacts[numb].GetInput("Nick Name: "));
+    contacts[numb].SetPnumber(contacts[numb].GetInput("Phone Number: "));
+    contacts[numb].SetDsecret(contacts[numb].GetInput("Darkest Secret: "));
+    contacts[numb].SetIndex(numb);
     numb++;
     if (numb > 7)
         numb = 0;

@@ -8,20 +8,36 @@
 
 class Contact{
     private:
+        int index;
         std::string FirstName;
         std::string LastName;
         std::string NickName;
         std::string PhoneNumber;
         std::string DarkestSecret;
-        int index;
         std::string StringResazer(std::string str);
-        std::string GetInput(std::string str);
-        int IsDigit(std::string str);
     public:
-        void ContactInit(Contact *contacts, int numb);
         void Search(Contact contacts);
         void IndixInit(Contact *contacts);
-        void SearchIndex(Contact Contacts);
+        void SearchIndex(Contact contacts);
+        std::string GetInput(std::string str);
+        void SetFname(std::string SfirstName){
+            FirstName = SfirstName;
+        }
+        void SetLname(std::string SlastName){
+            LastName = SlastName;
+        }
+        void SetNname(std::string SnickName){
+            NickName = SnickName;
+        }
+        void SetPnumber(std::string SphoneNumber){
+            PhoneNumber = SphoneNumber;
+        }
+        void SetDsecret(std::string SdarkestSecret){
+            DarkestSecret = SdarkestSecret;
+        }
+        void SetIndex(int Sindex){
+            index = Sindex;
+        }
 };
 
 #endif /*CONTACT_HPP*/

@@ -50,33 +50,3 @@ std::string Contact::GetInput(std::string str){
     }
     return (input);
 }
-
-int Contact::IsDigit(std::string str){
-
-    for (int i = 0; str[i]; i++){
-        if (!std::isdigit(str[i]))
-            return (false);
-    }
-    return (true);
-}
-
-void Contact::ContactInit(Contact *contact, int numb){
-
-    int IsDigit = true;
-
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    contact->FirstName = GetInput("First Name: ");
-    contact->LastName = GetInput("Last Name: ");
-    contact->NickName = GetInput("Nick Name: ");
-    contact->PhoneNumber = GetInput("Phone Number: ");
-    while (IsDigit){
-        if (!this->IsDigit(contact->PhoneNumber)){
-        std::cout << "ERROR: THIS FIELD MUST CONTAIN ONLY DIGITS!" << std::endl;
-        contact->PhoneNumber = GetInput("Phone Number: ");
-        }
-        else
-            IsDigit = false;
-    }
-    contact->DarkestSecret = GetInput("Darkest Secret: ");
-    index = numb;
-}

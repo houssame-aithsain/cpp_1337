@@ -12,7 +12,7 @@ int main(void)
         if (!str.compare("ADD"))
             Book.AddContact();
         if (!str.compare("SEARCH"))
-            Book.SearchForContact();
+            Book.SearchForContact();     
         std::cin >> str;
         if (std::cin.eof())
             exit(0);
