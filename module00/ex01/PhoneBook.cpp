@@ -5,7 +5,7 @@ int PhoneBook::PhoneBook::numb = 0;
 void PhoneBook::init(void){
 
     for (int i = 0; i < 8; i++)
-        contacts[i].IndixInit(&contacts[i]);
+        contacts[i].SetIndex(-1);
 }
 
 void PhoneBook::Usage()
@@ -38,9 +38,9 @@ void PhoneBook::SearchForContact(){
     int index = -1;
     int status = true;
 
-    std::cout << "==================================================" << std::endl;
-    std::cout << "     Index |" << " First Name |" << " Last Name  |" << " Nick Name |" << std::endl;
-    std::cout << "==================================================" << std::endl;
+    std::cout << "============================================" << std::endl;
+    std::cout << "     Index|" << "First Name|" << "Last Name |" << "Nick Name |" << std::endl;
+    std::cout << "============================================" << std::endl;
     for (int i = 0; i < 8; i++)
         ccontacts.Search(contacts[i]);
     if (!contacts[0].SearchIndex(contacts[0], CHECK))

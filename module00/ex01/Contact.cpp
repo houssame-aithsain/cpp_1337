@@ -1,10 +1,5 @@
 #include "Contact.hpp"
 
-void Contact::IndixInit(Contact *contacts){
-
-    contacts->index = -1;
-}
-
 std::string Contact::StringResazer(std::string str){
 
     if (str.length() > 10)
@@ -33,11 +28,11 @@ int Contact::SearchIndex(Contact contacts, int flag){
 void Contact::Search(Contact contacts){
 
     if (contacts.index != -1){
-        std::cout << std::setw(10) << contacts.index << " | ";
-        std::cout << std::setw(10) << this->StringResazer(contacts.FirstName) << " | ";
-        std::cout << std::setw(10) << this->StringResazer(contacts.LastName) << " | ";
+        std::cout << std::setw(10) << contacts.index << "|";
+        std::cout << std::setw(10) << this->StringResazer(contacts.FirstName) << "|";
+        std::cout << std::setw(10) << this->StringResazer(contacts.LastName) << "|";
         std::cout << std::setw(10) << this->StringResazer(contacts.NickName) << "|" << std::endl;
-        std::cout << "==================================================" << std::endl;
+        std::cout << "============================================" << std::endl;
     }
 }
 

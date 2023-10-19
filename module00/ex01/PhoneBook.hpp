@@ -2,6 +2,7 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include "Contact.hpp"
 
 #define CHECK 0

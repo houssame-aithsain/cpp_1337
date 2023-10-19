@@ -5,6 +5,7 @@
 #include <cstring>
 #include <iomanip>
 #include <limits>
+#include <cstdlib>
 
 class Contact{
     private:
@@ -17,7 +18,6 @@ class Contact{
         std::string StringResazer(std::string str);
     public:
         void Search(Contact contacts);
-        void IndixInit(Contact *contacts);
         int SearchIndex(Contact contacts, int flag);
         std::string GetInput(std::string str);
         void SetFname(std::string SfirstName){
