@@ -1,15 +1,19 @@
-CC = g++
-OFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
 
-SRC = megaphone.cpp
-NAME = megaphone
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRC = MegaPhone.cpp
+
+NAME = MegaPhone
+
 RM = rm -rf
+
 OBJS = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
