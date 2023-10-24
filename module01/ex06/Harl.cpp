@@ -6,11 +6,16 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:54:08 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/24 20:51:24 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:55:03 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+void Harl::printError( void ) {
+
+    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+}
 
 void Harl::debug( void ) {
     std::cout << "DEBUG: love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
@@ -56,5 +61,5 @@ void Harl::complain( std::string level ) {
         }
         return ;
     }
-    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    this->printError();
 }

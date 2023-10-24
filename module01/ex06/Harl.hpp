@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:54:05 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/24 19:05:04 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:54:15 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Harl{
         typedef void (Harl::*PointerToFunction)();
     public:
         void complain( std::string level );
+        void printError( void );
 };
 
 #endif /*HARL_HPP*/
