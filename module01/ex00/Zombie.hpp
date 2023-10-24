@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:42:32 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/20 14:35:36 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:45:34 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,9 @@ class Zombie{
         std::string name;
     public:
         Zombie* newZombie( std::string name );
-        void announce( void ){
-            std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-        }
-        ~Zombie( void ){
-            std::cout << name << std::endl;
-        }
-        void SetZombieNmae(std::string Sname){
-            name = Sname;
-        }
+        void announce( void );
+        ~Zombie( void );
+        void SetZombieNmae(std::string Sname);
         void randomChump( std::string name );
 };
 

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:17:17 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/24 15:59:03 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/10/24 14:54:05 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/10/24 19:05:04 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FileExtract.hpp"
-#include "ContentReplace.hpp"
 
-int main(int ac, char **av){
+#ifndef HARL_HPP
+#define HARL_HPP
 
-    File file;
-    Content content;
-    if (ac != 4){
-        std::cout << "USAGE: name file s1 s2" << std::endl;
-        return (1);
-    }
-    file.OpenFile(av[1]);
-    content.SetFileContent(file);
-    content.Replace(av[1], av[2], av[3]);
-}
+#include <iostream>
+
+
+class Harl{
+    private:
+        void debug( void );
+        void info( void );
+        void warning( void );
+        void error( void );
+        typedef void (Harl::*PointerToFunction)();
+    public:
+        void complain( std::string level );
+};
+
+#endif /*HARL_HPP*/

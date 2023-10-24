@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/23 20:17:20 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/10/24 16:05:50 by hait-hsa         ###   ########.fr        #
+#    Created: 2023/10/24 14:54:14 by hait-hsa          #+#    #+#              #
+#    Updated: 2023/10/24 20:01:18 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp FileExtract.cpp ContentReplace.cpp
+SRC = main.cpp Harl.cpp
 
-NAME = file
+NAME = harlFilter
 
 RM = rm -rf
 

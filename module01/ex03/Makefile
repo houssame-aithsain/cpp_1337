@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/23 20:17:02 by hait-hsa          #+#    #+#              #
+#    Updated: 2023/10/23 20:17:04 by hait-hsa         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = c++
 
-CXXFLAGS = -fsanitize=address -g -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 

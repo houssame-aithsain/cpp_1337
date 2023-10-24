@@ -5,23 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:17:17 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/24 15:59:03 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/10/24 14:54:11 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/10/24 20:07:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FileExtract.hpp"
-#include "ContentReplace.hpp"
+#include "Harl.hpp"
 
-int main(int ac, char **av){
-
-    File file;
-    Content content;
-    if (ac != 4){
-        std::cout << "USAGE: name file s1 s2" << std::endl;
-        return (1);
-    }
-    file.OpenFile(av[1]);
-    content.SetFileContent(file);
-    content.Replace(av[1], av[2], av[3]);
+int main(){
+    
+    Harl obj;
+    
+    obj.complain("DEBUG");
 }

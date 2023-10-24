@@ -2,9 +2,9 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC = main.cpp
 
-NAME = zombie
+NAME = brain
 
 RM = rm -rf
 
