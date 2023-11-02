@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:54:08 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/01 17:21:55 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:23:56 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ class ClapTrap {
     
     private:
         std::string name;
-        int HitPoints;
-        int EnergyPoints;
-        int AttackDamages;
+        unsigned int HitPoints;
+        unsigned int EnergyPoints;
+        unsigned int AttackDamage;
     public:
         ClapTrap();
         ~ClapTrap();
-        ClapTrap (ClapTrap& other);
+        ClapTrap (std::string name);
         ClapTrap& operator=(const ClapTrap& other);
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
+        void SetAttackDamage(unsigned int amount);
+        unsigned int GetAttackDamage(void);
+        std::string GetTargetName( void );
 };
