@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:16:54 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/25 11:26:22 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/10/26 11:23:30 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/10/28 14:37:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-#define HUMANB_HPP
+#pragma once
 
-#include "Weapon.hpp"
 #include <iostream>
 
-class HumanB{
+class Fixed {
 
     private:
-        std::string name;
-        Weapon* Sclub;
+        int fixed;
+        static const int fractionalBits = 8;
     public:
-        HumanB( void );
-        void attack();
-        HumanB(const std::string& str);
-        void setWeapon(Weapon& club);
+        Fixed ( void );
+        Fixed ( const Fixed& fixed);
+        Fixed& operator=(const Fixed& other);
+        ~Fixed( void );
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
 };
-
-#endif /*HUMANB_HPP*/

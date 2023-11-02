@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/26 11:21:31 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/10/26 11:21:35 by hait-hsa         ###   ########.fr        #
+#    Created: 2023/10/26 11:21:11 by hait-hsa          #+#    #+#              #
+#    Updated: 2023/10/27 22:32:25 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Zombie.cpp zombieHor.cpp
+SRC = main.cpp Fixed.cpp
 
-NAME = zombieHor
+NAME = fixed
 
 RM = rm -rf
 

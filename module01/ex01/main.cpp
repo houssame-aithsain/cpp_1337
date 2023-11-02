@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:39:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/21 16:39:36 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:10:43 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int main(){
 
+    int N = 15;
     Zombie *z, x;
 
-    z = x.zombieHorde(15, "foo");
-    
+    z = x.zombieHorde(N, "foo");
+    for (int i = 0; i < N; i++)
+        z[i].announce();
     delete[] z;
 }

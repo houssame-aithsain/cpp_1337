@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 20:16:54 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/25 11:26:22 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/01 14:41:52 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/01 14:42:41 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-#define HUMANB_HPP
+#include "ClapTrap.hpp"
 
-#include "Weapon.hpp"
-#include <iostream>
+int main() {
 
-class HumanB{
-
-    private:
-        std::string name;
-        Weapon* Sclub;
-    public:
-        HumanB( void );
-        void attack();
-        HumanB(const std::string& str);
-        void setWeapon(Weapon& club);
-};
-
-#endif /*HUMANB_HPP*/
+    
+}

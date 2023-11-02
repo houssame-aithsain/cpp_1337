@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:16:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/23 20:16:51 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:27:43 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@ void HumanB::attack(){
 
 HumanB::HumanB(const std::string& str){
 
+    this->Sclub = NULL;
     this->name = str;
 }
 
 void HumanB::setWeapon(Weapon& club){
 
     Sclub = &club;
+}
+
+HumanB::HumanB( void ){
+
+    this->Sclub = NULL;
+    this->name = "";
 }

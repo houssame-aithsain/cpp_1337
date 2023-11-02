@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:23:30 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/31 20:55:43 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/31 20:55:12 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,9 @@ class Fixed {
         ~Fixed( void );
         float toFloat( void ) const;
         int toInt( void ) const;
+        Fixed& operator=(const Fixed& other);
         int getRawBits( void ) const;
         void setRawBits( int const raw );
-        Fixed& operator=(const Fixed& obj);
-        // MIN MAX
-        static Fixed& min(Fixed& fixed1, Fixed& fixed2);
-        static Fixed& max(Fixed& obj1, Fixed& obj2);
-        static const Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
-        static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
-        // The 6 comparison operators: >, <, >=, <=, == and !=
-        bool operator>(const Fixed& obj);
-        bool operator<(const Fixed& obj);
-        bool operator<=(const Fixed& obj);
-        bool operator>=(const Fixed& obj);
-        bool operator==(const Fixed& obj);
-        bool operator!=(const Fixed& obj);
-        // The 4 arithmetic operators: +, -, *, and /
-        const Fixed operator+(const Fixed& obj);
-        const Fixed operator-(const Fixed& obj);
-        const Fixed operator*(const Fixed& obj);
-        const Fixed operator/(const Fixed& obj);
-        // pre-increment and post-increment, pre-decrement and post-decrement
-        const Fixed operator++();
-        const Fixed operator++(int);
-        const Fixed operator--();
-        const Fixed operator--(int);
 };
 
 std::ostream& operator<<(std::ostream& output, const Fixed& fixed);

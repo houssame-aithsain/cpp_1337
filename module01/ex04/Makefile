@@ -6,7 +6,7 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 20:17:20 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/10/24 16:05:50 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/10/25 12:51:47 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp FileExtract.cpp ContentReplace.cpp
 
-NAME = file
+NAME = extract
 
 RM = rm -rf
 

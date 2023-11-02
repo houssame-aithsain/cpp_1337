@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:16:43 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/23 20:16:44 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:28:25 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void HumanA::attack(){
 
-    std::cout << this->name << " attacks with their " << Sclub->getType() << std::endl;
+    std::cout << this->name << " attacks with their " << Sclub.getType() << std::endl;
 }
 
-HumanA::HumanA(const std::string& str, Weapon& club) : name(str), Sclub(&club){}
+HumanA::HumanA(const std::string str, Weapon& club) : name(str), Sclub(club){}

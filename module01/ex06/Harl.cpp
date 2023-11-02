@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:54:08 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/24 20:55:03 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:05:17 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void Harl::complain( std::string level ) {
 
     for (; name[i] != level && i < 3; i++);
     
-    if (name[i] == level) {
+    while (name[i] == level) {
         switch(i) {
         case 0:
             (this->*ptr[0])();

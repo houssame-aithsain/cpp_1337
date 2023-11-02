@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:42:32 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/20 14:45:34 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:24:04 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 #include <iostream>
 
-class Zombie{
+class Zombie {
     private:
         std::string name;
     public:
+        Zombie( void );
+        ~Zombie( void );
+        Zombie( std::string name );
         Zombie* newZombie( std::string name );
         void announce( void );
-        ~Zombie( void );
-        void SetZombieNmae(std::string Sname);
         void randomChump( std::string name );
 };
 

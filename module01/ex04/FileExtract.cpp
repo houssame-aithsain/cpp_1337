@@ -17,7 +17,7 @@ void File::OpenFile( std::string FileName ){
     std::ifstream FileId(FileName);
 
     if (!FileId) {
-        std::cerr << "Error opening the file." << std::endl;
+        std::cerr << "Error OPENING the file!" << std::endl;
         std::exit(20);
     }
     this->ReadFromFile(FileId);
@@ -26,13 +26,8 @@ void File::OpenFile( std::string FileName ){
 void File::ReadFromFile( std::ifstream& FileId ){
 
     std::string line;
-    bool FirstLine = true;
 
-    while (std::getline(FileId, line)){
-        if (!FirstLine)
-            this->buffer += '\n';
-        else
-            FirstLine = false;
+    while (std::getline(FileId, line, '\0')){
         this->buffer += line;
     }
     FileId.close();
