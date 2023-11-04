@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 13:54:08 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/03 18:32:43 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/03 07:40:28 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/03 17:51:11 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "ClapTrap.hpp"
 
-#include <iostream>
+class FragTrap : public ClapTrap {
 
-class ClapTrap {
-    
-    private:
-        std::string name;
-        unsigned int HitPoints;
-        unsigned int EnergyPoints;
-        unsigned int AttackDamage;
     public:
-        ClapTrap();
-        ~ClapTrap();
-        ClapTrap (std::string name);
-        ClapTrap (const ClapTrap &other);
-        ClapTrap& operator=(const ClapTrap& other);
+        ~FragTrap();
+        FragTrap();
+        FragTrap (std::string name);
+        FragTrap (const FragTrap &other);
         void attack(const std::string& target);
-        void takeDamage(unsigned int amount);
-        void beRepaired(unsigned int amount);
         void SetAttackDamage(unsigned int amount);
         unsigned int GetAttackDamage(void);
+        void beRepaired(unsigned int amount);
         std::string GetTargetName( void );
+        void takeDamage(unsigned int amount);
+        FragTrap& operator=(const FragTrap& other);
+        void highFivesGuys(void);
 };
