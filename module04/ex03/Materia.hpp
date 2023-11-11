@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Materia.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 19:19:11 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/10 17:51:42 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/10 17:55:50 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/10 18:26:52 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "AMateria.hpp"
 
-#include <iostream>
-#include "ICharacter.hpp"
+class Materia : public AMateria {
 
-
-class AMateria
-{
-    protected:
-        std::string type;
     public:
-        virtual ~AMateria (void) {}
-        AMateria (void);
-        AMateria (AMateria& other);
-        AMateria(std::string const & type);
-        AMateria& operator=(AMateria& other);
+        virtual ~Materia (void) {}
+        Materia (void);
+        Materia (Materia& other);
+        Materia(std::string const & type);
+        Materia& operator=(Materia& other);
         std::string const & getType() const; //Returns the materia type
-        virtual AMateria* clone() const = 0;
+        Materia* clone() const;
         virtual void use(ICharacter& target);
 };

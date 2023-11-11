@@ -6,11 +6,12 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:37:05 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/10 16:05:30 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:18:45 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "Materia.hpp"
 
 int Character::DupNodeCheck(s_list* toCheck) {
 
@@ -59,7 +60,6 @@ Character::~Character( void ) {
 
     s_list* tmp;
 
-
     while (this->head) {
         tmp = this->head;
         this->head = head->link;
@@ -92,15 +92,27 @@ Character::Character( std::string str ) {
 
 Character::Character( Character& other ) {
 
+    this->inventory[0] = NULL;
+    this->inventory[1] = NULL;
+    this->inventory[2] = NULL;
+    this->inventory[3] = NULL;
+    this->head = NULL;
     *this = other;
 }
 
 Character& Character::operator=(Character& other) {
 
+    std::cout << "Character operator has been called!" << std::endl;
     if (this != &other) {
         this->name = other.name;
-        for (int i = 0; i < 4; i++)
-            this->inventory[i] = other.inventory[i];
+        for (int i = 0; i < 4; i++) {
+            if (other.inventory[i]) {
+                delete this->inventory[i];
+                AMateria* m = other.inventory[i]->clone();
+                addMateria(m);
+                this->inventory[i] = m;
+            }
+        }
     }
     return (*this);
 }

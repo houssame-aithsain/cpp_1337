@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:46:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:57:31 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:30:44 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ Animal& Animal::operator=(Animal& other) {
     std::cout << "Animal Operator has been called!" << std::endl;
     if (this != &other)
         this->type = other.type;
-    return (*this);
+    return (other);
 }

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 15:18:11 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:50:01 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/05 11:48:32 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/11 16:26:37 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "Dog.hpp"
 
-Brain::~Brain( void ) {
+Dog::~Dog( void ) {
 
-    std::cout << "Brain Destructer called" << std::endl;
+    std::cout << "Dog Destructer has been called!" << std::endl;
 }
 
-Brain::Brain( void ) {
+Dog::Dog( void ) {
 
-    std::cout << "Brain Constructer called" << std::endl;
+    std::cout << "Dog constructer has been called!" << std::endl;
+    this->type = "Dog";
 }
 
-Brain::Brain( Brain& other ) { 
+Dog::Dog( Dog& other ) {
 
+    std::cout << "Dog Copy Constructer has been called!" << std::endl;
     *this = other;
 }
 
-Brain& Brain::operator=(Brain& other) {
+Dog& Dog::operator=(Dog& other) {
 
+    std::cout << "Dog Operator has been called!" << std::endl;
     if (this != &other)
-        for (int i = 0; i < 100; i++)
-            this->ideas[i] = other.ideas[i];
-    return (*this);
+        this->type = other.type;
+    return (other);
 }

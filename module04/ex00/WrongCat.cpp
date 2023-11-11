@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 15:18:11 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:50:01 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/05 14:56:06 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/05 14:59:15 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
 
-Brain::~Brain( void ) {
+#include "WrongCat.hpp"
 
-    std::cout << "Brain Destructer called" << std::endl;
+WrongCat::~WrongCat( void ) {}
+
+WrongCat::WrongCat( void ) {
+
+    this->type = "WrongCat";
 }
 
-Brain::Brain( void ) {
-
-    std::cout << "Brain Constructer called" << std::endl;
-}
-
-Brain::Brain( Brain& other ) { 
+WrongCat::WrongCat( WrongCat& other ) {
 
     *this = other;
 }
 
-Brain& Brain::operator=(Brain& other) {
+WrongCat& WrongCat::operator=(WrongCat& other) {
 
     if (this != &other)
-        for (int i = 0; i < 100; i++)
-            this->ideas[i] = other.ideas[i];
-    return (*this);
+        this->type = other.type;
+    return (other);
 }

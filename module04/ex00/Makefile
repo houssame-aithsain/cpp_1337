@@ -6,17 +6,17 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/01 14:39:29 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/11/11 15:57:56 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/11/05 15:11:03 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp AMateria.cpp Materia.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 
-NAME = brain
+NAME = animal
 
 RM = rm -rf
 

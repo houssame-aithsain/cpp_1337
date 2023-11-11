@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:49:43 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:56:48 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:25:50 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 Cat::~Cat( void ) {
 
-    delete this->brain;
     std::cout << "Cat Destructer has been called!" << std::endl;
 }
 
 Cat::Cat( void ) {
 
-    this->brain = new Brain();
     std::cout << "Cat constructer has been called!" << std::endl;
     this->type = "Cat";
 }
@@ -36,9 +34,5 @@ Cat& Cat::operator=(Cat& other) {
     std::cout << "Cat Operator has been called!" << std::endl;
     if (this != &other)
         this->type = other.type;
-        if (other.brain) {
-            delete this->brain;
-            this->brain = new Brain(*(other.brain));
-        }
-    return (*this);
+    return (other);
 }
