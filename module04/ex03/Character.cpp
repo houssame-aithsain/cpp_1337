@@ -6,12 +6,56 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:37:05 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:18:45 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:15:55 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 #include "Materia.hpp"
+
+Character::~Character( void ) {
+
+    s_list* tmp;
+
+    while (this->head) {
+        tmp = this->head;
+        this->head = head->link;
+        if (this->DupNodeCheck(tmp)) {
+            delete tmp->materia;
+        }
+        delete tmp;
+    }
+    // std::cout << "Character Destructer has been called!" << std::endl;
+}
+
+Character::Character( void ) {
+
+    this->inventory[0] = NULL;
+    this->inventory[1] = NULL;
+    this->inventory[2] = NULL;
+    this->inventory[3] = NULL;
+    this->head = NULL;
+}
+
+Character::Character( std::string str ) {
+
+    this->name = str;
+    this->inventory[0] = NULL;
+    this->inventory[1] = NULL;
+    this->inventory[2] = NULL;
+    this->inventory[3] = NULL;
+    this->head = NULL;
+}
+
+Character::Character( Character& other ) {
+
+    this->inventory[0] = NULL;
+    this->inventory[1] = NULL;
+    this->inventory[2] = NULL;
+    this->inventory[3] = NULL;
+    this->head = NULL;
+    *this = other;
+}
 
 int Character::DupNodeCheck(s_list* toCheck) {
 
@@ -56,53 +100,9 @@ void Character::addMateria(AMateria* m) {
     }
 }
 
-Character::~Character( void ) {
-
-    s_list* tmp;
-
-    while (this->head) {
-        tmp = this->head;
-        this->head = head->link;
-        if (this->DupNodeCheck(tmp)) {
-            delete tmp->materia;
-        }
-        delete tmp;
-    }
-    std::cout << "Character Destructer has been called!" << std::endl;
-}
-
-Character::Character( void ) {
-
-    this->inventory[0] = NULL;
-    this->inventory[1] = NULL;
-    this->inventory[2] = NULL;
-    this->inventory[3] = NULL;
-    this->head = NULL;
-}
-
-Character::Character( std::string str ) {
-
-    this->name = str;
-    this->inventory[0] = NULL;
-    this->inventory[1] = NULL;
-    this->inventory[2] = NULL;
-    this->inventory[3] = NULL;
-    this->head = NULL;
-}
-
-Character::Character( Character& other ) {
-
-    this->inventory[0] = NULL;
-    this->inventory[1] = NULL;
-    this->inventory[2] = NULL;
-    this->inventory[3] = NULL;
-    this->head = NULL;
-    *this = other;
-}
-
 Character& Character::operator=(Character& other) {
 
-    std::cout << "Character operator has been called!" << std::endl;
+    // std::cout << "Character operator has been called!" << std::endl;
     if (this != &other) {
         this->name = other.name;
         for (int i = 0; i < 4; i++) {

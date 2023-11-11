@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:45:39 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/10 15:53:21 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:15:28 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ MateriaSource::~MateriaSource() {
         }
         delete tmp;
     }
-    std::cout << "MateriaSource Destructer has been called!" << std::endl;
+    // std::cout << "MateriaSource Destructer has been called!" << std::endl;
 }
 
 MateriaSource::MateriaSource() {
