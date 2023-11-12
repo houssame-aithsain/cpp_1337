@@ -6,11 +6,36 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:45:39 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 18:15:28 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:50:20 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
+
+MateriaSource::MateriaSource( MateriaSource& other ) {
+    
+    this->stock[0] = NULL;
+    this->stock[1] = NULL;
+    this->stock[2] = NULL;
+    this->stock[3] = NULL;
+    this->head = NULL;
+    *this = other;
+}
+
+MateriaSource& MateriaSource::operator=(MateriaSource& other) {
+    
+    if (this != &other) {
+        for (int i = 0; i < 4; i++) {
+            if (other.stock[i]) {
+                delete this->stock[i];
+                AMateria* m = other.stock[i]->clone();
+                addMateria(m);
+                this->stock[i] = m;
+            }
+        }
+    }
+    return (*this);
+}
 
 int MateriaSource::DupNodeCheck(t_list* toCheck) {
 

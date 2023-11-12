@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:45:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/10 15:45:15 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:47:44 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ class MateriaSource : public IMateriaSource {
         t_list *head;
     public:
         ~MateriaSource();
-        MateriaSource();
+        MateriaSource( void );
+        MateriaSource( MateriaSource& other );
+        MateriaSource& operator=(MateriaSource& other);
         void learnMateria(AMateria*);
         AMateria* createMateria(std::string const & type);
         void addMateria(AMateria* m); 

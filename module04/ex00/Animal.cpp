@@ -6,18 +6,15 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:46:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:30:44 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:46:16 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
 void Animal::makeSound( void ) const {
-    
-    if (!this->type.compare("Cat"))
-        std::cout << "cat sound!" << std::endl;
-    else if (!this->type.compare("Dog"))
-        std::cout << "dog sound!" << std::endl;
+
+    std::cout << type << " sound!" << std::endl;
 }
 
 std::string Animal::getType(void) const {
@@ -32,6 +29,7 @@ Animal::~Animal( void ) {
 
 Animal::Animal( void ) {
 
+    type = "Animal";
     std::cout << "Animal Constructer has been called!" << std::endl;
 }
 

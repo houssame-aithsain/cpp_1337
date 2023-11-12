@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:46:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:57:31 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:20:19 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void Animal::makeSound( void ) const {
     
-    if (!this->type.compare("Cat"))
-        std::cout << "cat sound!" << std::endl;
-    else if (!this->type.compare("Dog"))
-        std::cout << "dog sound!" << std::endl;
+    std::cout << type << " sound!" << std::endl;
 }
 
 std::string Animal::getType(void) const {

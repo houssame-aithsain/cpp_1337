@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:48:32 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:56:52 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:15:27 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ Dog::Dog( Dog& other ) {
 Dog& Dog::operator=(Dog& other) {
 
     std::cout << "Dog Operator has been called!" << std::endl;
-    if (this != &other)
+    if (this != &other) {
         this->type = other.type;
         if (other.brain) {
             delete this->brain;
             this->brain = new Brain(*(other.brain));
         }
+    }
     return (*this);
 }

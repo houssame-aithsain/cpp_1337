@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:55:30 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/05 15:03:35 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:46:28 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void WrongAnimal::makeSound( void ) const {
     
-    if (!this->type.compare("WrongCat"))
-        std::cout << "wrong cat" << std::endl;
-    else if (!this->type.compare("Dog"))
-        std::cout << "wrong dog" << std::endl;
+    std::cout << type << " sound!" << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const {
@@ -25,17 +22,26 @@ std::string WrongAnimal::getType(void) const {
     return (this->type);
 }
 
-WrongAnimal::~WrongAnimal( void ) {}
+WrongAnimal::~WrongAnimal( void ) {
 
-WrongAnimal::WrongAnimal( void ) {}
+    std::cout << "WrongAnimal Destructer has been called!" << std::endl;
+}
+
+WrongAnimal::WrongAnimal( void ) {
+
+    std::cout << "WrongAnimal Constructer has been called!" << std::endl;
+    type = "wrong animal";
+}
 
 WrongAnimal::WrongAnimal(WrongAnimal& other ) {
 
+    std::cout << "WrongAnimal Copy Constructer has been called!" << std::endl;
     *this = other;
 }
 
 WrongAnimal& WrongAnimal::operator=(WrongAnimal& other) {
 
+    std::cout << "WrongAnimal Operator has been called!" << std::endl;
     if (this != &other)
         this->type = other.type;
     return (other);

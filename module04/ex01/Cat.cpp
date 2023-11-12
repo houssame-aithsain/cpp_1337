@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:49:43 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:56:48 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:15:14 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ Cat::Cat( Cat& other ) {
 Cat& Cat::operator=(Cat& other) {
 
     std::cout << "Cat Operator has been called!" << std::endl;
-    if (this != &other)
+    if (this != &other) {
         this->type = other.type;
         if (other.brain) {
             delete this->brain;
             this->brain = new Brain(*(other.brain));
         }
+    }
     return (*this);
 }

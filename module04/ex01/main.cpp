@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:52:17 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 17:06:11 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:25:38 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ int main()
     delete j; // should not create a leak
     delete i;
     return 0;
-    system("leaks animal");
 }
