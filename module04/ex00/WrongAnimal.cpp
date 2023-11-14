@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:55:30 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 11:46:28 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:01:18 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void WrongAnimal::makeSound( void ) const {
     
-    std::cout << type << " sound!" << std::endl;
+    std::cout << "wrong animal sound!" << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const {

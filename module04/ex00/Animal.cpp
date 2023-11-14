@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:46:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 11:46:16 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:03:16 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void Animal::makeSound( void ) const {
 
-    std::cout << type << " sound!" << std::endl;
+    std::cout << "animal sound!" << std::endl;
 }
 
 std::string Animal::getType(void) const {

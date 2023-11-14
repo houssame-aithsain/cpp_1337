@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:48:32 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 12:15:27 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:08:08 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ Dog& Dog::operator=(Dog& other) {
         }
     }
     return (*this);
+}
+
+void Dog::makeSound( void ) const {
+
+    std::cout <<"dog sound!" << std::endl;
 }

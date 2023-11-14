@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:56:06 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 11:46:32 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:02:15 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ WrongCat& WrongCat::operator=(WrongCat& other) {
     if (this != &other)
         this->type = other.type;
     return (other);
+}
+
+void WrongCat::makeSound( void ) const {
+
+    std::cout << "wrong cat sound!" << std::endl;
 }

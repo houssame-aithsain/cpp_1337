@@ -6,16 +6,13 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:43:28 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/09 22:33:29 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:21:52 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::~Ice( void ) {
-
-    
-}
+Ice::~Ice( void ) {}
 
 Ice::Ice( void ) {
 
@@ -24,6 +21,7 @@ Ice::Ice( void ) {
 
 Ice::Ice( Ice& other ) {
 
+    this->type = "ice";
     *this = other;
 }
 

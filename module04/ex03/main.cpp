@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:43:35 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 10:55:40 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:29:30 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,13 +228,11 @@ int main()
 	std::cout << "--------- test 10 ----------" << std::endl;
 	test10();
 	std::cout << "--------- test LEAKS ----------" << std::endl;
-	system("leaks -q brain");
+	// system("leaks -q brain");
 	return 0;
 }
-
-// int main()
-// {
-// 	IMateriaSource* src = new MateriaSource();
+// void l()
+// 	{IMateriaSource* src = new MateriaSource();
 // 	src->learnMateria(new Ice());
 // 	src->learnMateria(new Cure());
 // 	ICharacter* me = new Character("me");
@@ -249,5 +247,10 @@ int main()
 // 	delete bob;
 // 	delete me;
 // 	delete src;
-// 	return 0;
+// 	// return 0;
+// 	}
+// int main()
+// {
+// 	l();
+// 	system("leaks brain");
 // }

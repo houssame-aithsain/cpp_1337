@@ -6,12 +6,12 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:36:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 16:19:03 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:56:37 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Materia.hpp"
+
 #include "ICharacter.hpp"
 
 typedef struct llist {

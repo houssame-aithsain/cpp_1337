@@ -6,13 +6,12 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:43:25 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/09 22:48:56 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:59:57 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include "AMateria.hpp"
 
 class Cure : public AMateria {

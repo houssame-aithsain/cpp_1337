@@ -6,16 +6,11 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:46:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 12:20:19 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:09:59 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-
-void Animal::makeSound( void ) const {
-    
-    std::cout << type << " sound!" << std::endl;
-}
 
 std::string Animal::getType(void) const {
 

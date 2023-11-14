@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:20:34 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 17:30:04 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:17:01 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ std::string const & AMateria::getType() const {
 
 void AMateria::use(ICharacter& target){
 
-    (void)target;
+    target.use(0, target);
 }

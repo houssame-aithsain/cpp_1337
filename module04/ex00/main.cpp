@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:52:17 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 11:42:57 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:27:11 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int main()
     // std::cout << i->getType() << " " << std::endl;
     // i->makeSound(); //will output the cat sound!
     // meta->makeSound();
+    // system("leaks animal");
 }

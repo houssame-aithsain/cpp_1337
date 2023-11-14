@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:54:04 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 11:38:16 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:05:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ class WrongAnimal {
         WrongAnimal( WrongAnimal& other );
         WrongAnimal& operator=(WrongAnimal& other);
         std::string getType ( void ) const;
-        virtual void makeSound( void ) const;
+        void makeSound( void ) const;
 };

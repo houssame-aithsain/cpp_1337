@@ -6,12 +6,11 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:37:05 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 18:15:55 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:24:05 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
-#include "Materia.hpp"
 
 Character::~Character( void ) {
 

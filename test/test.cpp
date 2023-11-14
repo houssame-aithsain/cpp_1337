@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   test.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 11:45:29 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 13:19:13 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/14 15:51:17 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
 #include <iostream>
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
 
-class Animal {
 
-    protected:
-        std::string type;
-    public:
-        virtual ~Animal( void );
-        Animal( void );
-        Animal( Animal& other );
-        Animal& operator=(Animal& other);
-        std::string getType ( void ) const;
-        virtual void makeSound( void ) const;
-};
+
+int main() { 
+
+    const std::string str = "hello";
+
+    const std::string str2;
+
+    str2 = str;
+}

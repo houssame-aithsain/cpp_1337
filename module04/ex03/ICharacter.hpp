@@ -6,13 +6,12 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:45:11 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/09 19:03:04 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:00:05 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include "AMateria.hpp"
 
 class AMateria;

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:19:11 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/11 17:27:17 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:58:27 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
 
 class AMateria
 {

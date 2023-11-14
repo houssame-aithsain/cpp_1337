@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:47:47 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/05 13:37:38 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:58:20 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ class Dog : public Animal {
         Dog( void );
         Dog(Dog &other);
         Dog& operator=(Dog& other);
+        void makeSound( void ) const;
 };

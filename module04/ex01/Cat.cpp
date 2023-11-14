@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:49:43 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 12:15:14 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:14:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ Cat& Cat::operator=(Cat& other) {
         }
     }
     return (*this);
+}
+
+void Cat::makeSound( void ) const {
+
+    std::cout << "cat sound!" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 11:49:55 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/05 12:35:57 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:58:14 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ class Cat : public Animal {
         Cat( void );
         Cat(Cat &other);
         Cat& operator=(Cat& other);
+        void makeSound( void ) const;
 };

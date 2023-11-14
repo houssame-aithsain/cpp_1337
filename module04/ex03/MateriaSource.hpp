@@ -6,13 +6,11 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:45:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/12 12:47:44 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:00:21 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "IMateriaSource.hpp"
-#include <iostream>
-
 
 typedef struct list {
 
