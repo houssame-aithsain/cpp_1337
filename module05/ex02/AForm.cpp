@@ -24,15 +24,17 @@ AForm::AForm( std::string name, const int signGrade, const int executeGrade) : n
         throw AForm::GradeTooLowException();
 }
 
-AForm::AForm( AForm& other ) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade) {
+AForm::AForm( AForm& other ) : signGrade(other.signGrade), executeGrade(other.executeGrade) {
 
     *this = other;
 }
 
 AForm& AForm::operator=( AForm& other ) {
 
-    if (this != &other)
+    if (this != &other) {
+        (std::string)this->name = other.name;
         this->isSigned = other.isSigned;
+    }
     return (*this);
 }
 
