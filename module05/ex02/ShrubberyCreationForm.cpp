@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:45:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:06:58 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:33:33 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 ShrubberyCreationForm::~ShrubberyCreationForm( void ){}
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : name("Shrubbery reque"), isSigned(false), signGrade(25), executeGrade(5) {}
+ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm("Shrubbery reque", 25, 5) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : name("Shrubbery"), isSigned(false), signGrade(25), executeGrade(5), target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm("Shrubbery reque", 25, 5), target(target) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm& other ) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade) {
+ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm& other ) {
 
     *this = other;
 }
@@ -26,42 +26,32 @@ ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm& other ) : n
 ShrubberyCreationForm& ShrubberyCreationForm::operator=( ShrubberyCreationForm& other ) {
 
     if (this != &other)
-        this->isSigned = other.isSigned;
+        AForm::operator=(other);
     return (*this);
 }
 
-const char* ShrubberyCreationForm::GradeTooHighException::what() const throw() {
-    
-    return ("Grade Too High!");
-}
+// std::string ShrubberyCreationForm::getName( void ) const {
 
-const char* ShrubberyCreationForm::GradeTooLowException::what() const throw() {
-    
-    return ("Grade Too Low!");
-}
+//     return (name);
+// }
 
-std::string ShrubberyCreationForm::getName( void ) const {
+// int ShrubberyCreationForm::getSignGrade( void ) {
 
-    return (name);
-}
+//     return(signGrade);
+// }
 
-int ShrubberyCreationForm::getSignGrade( void ) {
+// int ShrubberyCreationForm::getExecutGrade( void ) {
 
-    return(signGrade);
-}
+//     return (executeGrade);
+// }
 
-int ShrubberyCreationForm::getExecutGrade( void ) {
+// void ShrubberyCreationForm::beSigned( Bureaucrat& b ) {
 
-    return (executeGrade);
-}
-
-void ShrubberyCreationForm::beSigned( Bureaucrat& b ) {
-
-    if (b.getGrade() <= this->signGrade)
-        this->isSigned = true;
-    else
-        throw ShrubberyCreationForm::GradeTooLowException();
-}
+//     if (b.getGrade() <= this->signGrade)
+//         this->isSigned = true;
+//     else
+//         throw ShrubberyCreationForm::GradeTooLowException();
+// }
 
 void ShrubberyCreationForm::treeMaker( void ) const {
 
@@ -103,16 +93,14 @@ void ShrubberyCreationForm::treeMaker( void ) const {
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
     
-    if (this->isSigned && (executor.getGrade() <= this->executeGrade))
+    if (this->getSign() && (executor.getGrade() <= this->getExecutGrade()))
         this->treeMaker();
-    else {
-        std::cout << executor.getName() << " didn't make it to execute form " << this->name << std::endl;
+    else
         throw ShrubberyCreationForm::GradeTooLowException();
-    }
 }
 
 std::ostream& operator<<(std::ostream& os, ShrubberyCreationForm& other) {
 
-    os << "ShrubberyCreationForm Name: " << other.getName() << ", ShrubberyCreationForm sign Grade: " << other.getSignGrade() << ", ShrubberyCreationForm Execut Grade: " << other.getExecutGrade();
+    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade();
     return (os);
 }

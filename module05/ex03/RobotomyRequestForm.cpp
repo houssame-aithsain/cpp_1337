@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:46:38 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:10:27 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:33:29 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 RobotomyRequestForm::~RobotomyRequestForm( void ) {}
 
-RobotomyRequestForm::RobotomyRequestForm( void ) : name("robotomy reque"), isSigned(false), signGrade(72), executeGrade(45) {}
+RobotomyRequestForm::RobotomyRequestForm( void ) : AForm("robotomy reque", 72, 45) {}
 
-RobotomyRequestForm::RobotomyRequestForm( std::string target ) : name("robotomy reque"), isSigned(false), signGrade(25), executeGrade(5), target(target) {}
+RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm("robotomy reque", 72, 45), target(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm& other ) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade) {
+RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm& other ) {
 
     *this = other;
 }
@@ -26,62 +26,50 @@ RobotomyRequestForm::RobotomyRequestForm( RobotomyRequestForm& other ) : name(ot
 RobotomyRequestForm& RobotomyRequestForm::operator=( RobotomyRequestForm& other ) {
 
     if (this != &other)
-        this->isSigned = other.isSigned;
+        AForm::operator=(other);
     return (*this);
 }
 
-const char* RobotomyRequestForm::GradeTooHighException::what() const throw() {
-    
-    return ("Grade Too High!");
-}
+// std::string RobotomyRequestForm::getName( void ) const {
 
-const char* RobotomyRequestForm::GradeTooLowException::what() const throw() {
-    
-    return ("Grade Too Low!");
-}
+//     return (name);
+// }
 
-std::string RobotomyRequestForm::getName( void ) const {
+// int RobotomyRequestForm::getSignGrade( void ) {
 
-    return (name);
-}
+//     return(signGrade);
+// }
 
-int RobotomyRequestForm::getSignGrade( void ) {
+// int RobotomyRequestForm::getExecutGrade( void ) {
 
-    return(signGrade);
-}
+//     return (executeGrade);
+// }
 
-int RobotomyRequestForm::getExecutGrade( void ) {
+// void RobotomyRequestForm::beSigned( Bureaucrat& b ) {
 
-    return (executeGrade);
-}
-
-void RobotomyRequestForm::beSigned( Bureaucrat& b ) {
-
-    if (b.getGrade() <= this->signGrade)
-        this->isSigned = true;
-    else
-        throw RobotomyRequestForm::GradeTooLowException();
-}
+//     if (b.getGrade() <= this->signGrade)
+//         this->isSigned = true;
+//     else
+//         throw RobotomyRequestForm::GradeTooLowException();
+// }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
     
-    if (this->isSigned && (executor.getGrade() <= this->executeGrade)) {
+    if (this->getSign() && (executor.getGrade() <= this->getExecutGrade())) {
         srand(time(NULL));
         if (rand() % 2) {
             std::cout << "RRRRR... RRRRR... RRRRR..." << std::endl;
             std::cout << target << " has been robotomized successfully 50% of the time" << std::endl;
         }
         else
-            std::cout << "robotomy failed " << std::endl;
+            std::cout << "robotomy failed" << std::endl;
     }
-    else {
-        std::cout << executor.getName() << " didn't make it to execute form " << this->name << std::endl;
+    else
         throw RobotomyRequestForm::GradeTooLowException();
-    }
 }
 
 std::ostream& operator<<(std::ostream& os, RobotomyRequestForm& other) {
 
-    os << "RobotomyRequestForm Name: " << other.getName() << ", RobotomyRequestForm sign Grade: " << other.getSignGrade() << ", RobotomyRequestForm Execut Grade: " << other.getExecutGrade();
+    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade();
     return (os);
 }

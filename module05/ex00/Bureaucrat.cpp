@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:19:31 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:01:57 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:37:36 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat(void) : name("Jilali"), grade(50) {}
 
 Bureaucrat::Bureaucrat(std::string name, int n) : name(name), grade(n) {
 
-    if (n < 1)
+    if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-    if (n > 150)
+    if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
 
@@ -32,7 +32,10 @@ Bureaucrat::Bureaucrat(Bureaucrat& other) {
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& other) {
 
     if (this != &other)
+    {
         this->grade = other.grade;
+        (std::string)this->name = other.name;
+    }
     return (*this);
 }
 

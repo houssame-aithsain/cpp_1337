@@ -29,13 +29,14 @@ class AForm {
         virtual ~AForm( void );
         AForm( void );
         AForm( AForm& other );
-        AForm( const int signGrade, const int executeGrade, std::string name );
+        AForm( std::string name, const int signGrade, const int executeGrade );
         AForm& operator=( AForm& other );
-        virtual std::string getName( void ) const = 0;
-        virtual int getSignGrade( void ) = 0;
-        virtual int getExecutGrade( void ) = 0;
-        virtual void beSigned( Bureaucrat& b) = 0;
+        std::string getName( void ) const;
+        int getSignGrade( void );
+        int getExecutGrade( void ) const;
+        void beSigned( Bureaucrat& b);
         virtual void execute(Bureaucrat const & executor) const = 0;
+        int getSign( void ) const;
         class GradeTooHighException : public std::exception {
             
             const char* what() const throw();

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:19:31 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:08:56 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:25:20 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ void Bureaucrat::signForm( AForm& f ) {
 
 void Bureaucrat::executeForm(AForm const & form) {
 
-    form.execute(*this);
-    std::cout << this->name << " executed " << form.getName() << std::endl;
+    try {
+        form.execute(*this);
+        std::cout << this->name << " executed " << form.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+      std::cout << this->name << " didn't make it to execute form " << this->name << " because " << e.what() << std::endl;
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:13:00 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/25 20:58:27 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:31:53 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ int main() {
         b.executeForm(sh);
         b.executeForm(pr);
         b.executeForm(ro);
-    }
-    catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-    }
-    try {
-        std::cout << "hello world " << std::endl;
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

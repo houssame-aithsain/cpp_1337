@@ -16,7 +16,7 @@ AForm::~AForm( void ) {}
 
 AForm::AForm( void ) : name("Aform01"), isSigned(false), signGrade(15), executeGrade(70) {}
 
-AForm::AForm( const int signGrade, const int executeGrade, std::string name ) : name(name), signGrade(signGrade), executeGrade(executeGrade) {
+AForm::AForm( std::string name, const int signGrade, const int executeGrade) : name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade) {
 
     if (this->signGrade < 1)
         throw AForm::GradeTooHighException();
@@ -56,9 +56,14 @@ int AForm::getSignGrade( void ) {
     return(signGrade);
 }
 
-int AForm::getExecutGrade( void ) {
+int AForm::getExecutGrade( void ) const {
 
     return (executeGrade);
+}
+
+int AForm::getSign( void ) const {
+
+    return (this->isSigned);
 }
 
 void AForm::beSigned( Bureaucrat& b ) {
