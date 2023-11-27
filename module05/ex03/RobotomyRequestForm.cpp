@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:46:38 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:29 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:53:39 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,6 @@ RobotomyRequestForm& RobotomyRequestForm::operator=( RobotomyRequestForm& other 
         AForm::operator=(other);
     return (*this);
 }
-
-// std::string RobotomyRequestForm::getName( void ) const {
-
-//     return (name);
-// }
-
-// int RobotomyRequestForm::getSignGrade( void ) {
-
-//     return(signGrade);
-// }
-
-// int RobotomyRequestForm::getExecutGrade( void ) {
-
-//     return (executeGrade);
-// }
-
-// void RobotomyRequestForm::beSigned( Bureaucrat& b ) {
-
-//     if (b.getGrade() <= this->signGrade)
-//         this->isSigned = true;
-//     else
-//         throw RobotomyRequestForm::GradeTooLowException();
-// }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
     

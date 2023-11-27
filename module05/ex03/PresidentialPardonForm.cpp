@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:47:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:21 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:53:23 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,6 @@ PresidentialPardonForm& PresidentialPardonForm::operator=( PresidentialPardonFor
         AForm::operator=(other);
     return (*this);
 }
-
-// std::string PresidentialPardonForm::getName( void ) const {
-
-//     return (name);
-// }
-
-// int PresidentialPardonForm::getSignGrade( void ) {
-
-//     return(signGrade);
-// }
-
-// int PresidentialPardonForm::getExecutGrade( void ) {
-
-//     return (executeGrade);
-// }
-
-// void PresidentialPardonForm::beSigned( Bureaucrat& b ) {
-
-//     if (b.getGrade() <= this->signGrade)
-//         this->isSigned = true;
-//     else
-//         throw PresidentialPardonForm::GradeTooLowException();
-// }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
     

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:45:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:33:33 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:53:57 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,6 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=( ShrubberyCreationForm& 
         AForm::operator=(other);
     return (*this);
 }
-
-// std::string ShrubberyCreationForm::getName( void ) const {
-
-//     return (name);
-// }
-
-// int ShrubberyCreationForm::getSignGrade( void ) {
-
-//     return(signGrade);
-// }
-
-// int ShrubberyCreationForm::getExecutGrade( void ) {
-
-//     return (executeGrade);
-// }
-
-// void ShrubberyCreationForm::beSigned( Bureaucrat& b ) {
-
-//     if (b.getGrade() <= this->signGrade)
-//         this->isSigned = true;
-//     else
-//         throw ShrubberyCreationForm::GradeTooLowException();
-// }
 
 void ShrubberyCreationForm::treeMaker( void ) const {
 
