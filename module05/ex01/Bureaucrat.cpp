@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:19:31 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:01:57 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:00:44 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat(void) : name("Jilali"), grade(50) {}
 
 Bureaucrat::Bureaucrat(std::string name, int n) : name(name), grade(n) {
 
-    if (n < 1)
+    if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-    if (n > 150)
+    if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
 
@@ -48,7 +48,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& other) {
 
-    os << other.getName() << ", bureaucrat grade " << other.getGrade() << std::endl;
+    os << other.getName() << ", bureaucrat grade " << other.getGrade();
     return (os);
 }
 
@@ -74,4 +74,15 @@ const std::string Bureaucrat::getName( void ) const {
 int Bureaucrat::getGrade( void ) {
 
     return (grade);
+}
+
+void Bureaucrat::signForm( Form& f ) {
+
+    try {
+        f.beSigned(*this);
+        std::cout << this->name << " signed " << f.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << this->name << " couldn’t sign " << f.getName() << " because " << e.what() << std::endl;
+    }
 }

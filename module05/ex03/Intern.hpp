@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 13:13:00 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 14:01:06 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/26 10:05:36 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/26 19:23:00 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#pragma once
 
-int main() {
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-    Bureaucrat b;
-
-    try {
-        Bureaucrat mourad("jilali", 2);
-        mourad.gradeIncremen();
-        std::cout << mourad;
-        b.gradeDecremen();
-    }
-    catch(std::exception & e) {
-        std::cout << e.what() << std::endl;
-    }
-}
+class Intern {
+    public:
+        ~Intern( void );
+        Intern( void );
+        Intern( Intern & intern );
+        AForm* makeForm(std::string formName, std::string formTarget);
+};
+    typedef AForm Form;

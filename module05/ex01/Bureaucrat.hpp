@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:10:03 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:01:30 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:00:13 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 
@@ -30,6 +33,7 @@ class Bureaucrat {
         int getGrade( void );
         void gradeIncremen( void );
         void gradeDecremen( void );
+        void signForm( Form& f );
         class GradeTooHighException : public std::exception {
             
             const char* what() const throw();
