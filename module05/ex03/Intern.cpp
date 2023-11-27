@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 10:05:43 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 16:43:33 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:21:30 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ Intern::Intern( void ) {}
 
 Intern::Intern( Intern & intern ) {
 
-    (void)intern;
+    *this = intern;
+}
+
+Intern& Intern::operator=(Intern& other) {
+
+    (void)other;
+    return (*this);
 }
 
 AForm* Intern::getPresidential( std::string formTarget ) {

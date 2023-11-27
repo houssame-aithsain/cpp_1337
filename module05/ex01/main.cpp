@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:13:00 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 14:18:55 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:25:51 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int main() {
 
-    Bureaucrat b("eabase", 60);
-    Form a(40, 89, "form01");
+    Bureaucrat b("houssame", 10);
+    Form a(1, 60, "eabase");
+
     try {
         b.signForm(a);
         std::cout << a << std::endl;
@@ -24,14 +25,14 @@ int main() {
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }
-    // std::cout << a << std::endl;
-    // try {
-    //     Bureaucrat mourad("mourad", 150);
-    //     std::cout << mourad;
-    //     b.gradeIncremen(10);
-    //     b.gradeDecremen(20);
-    // }
-    // catch(std::exception & e) {
-    //     std::cout << e.what() << std::endl;
-    // }
+    std::cout << a << std::endl;
+    try {
+        Bureaucrat mourad("mourad", 150);
+        std::cout << mourad;
+        b.gradeIncremen();
+        b.gradeDecremen();
+    }
+    catch(std::exception & e) {
+        std::cout << e.what() << std::endl;
+    }
 }

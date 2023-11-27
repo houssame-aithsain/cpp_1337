@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:47:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:53:23 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:22:07 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 
 std::ostream& operator<<(std::ostream& os, PresidentialPardonForm& other) {
 
-    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade();
+    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade() << ", Form status: ";
+    if (other.getSign())
+        os << "signed!";
+    else
+        os << "not signed!";
     return (os);
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:19:31 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:25:20 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:15:51 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ Bureaucrat::Bureaucrat(std::string name, int n) : name(name), grade(n) {
         throw Bureaucrat::GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat& other) {
+Bureaucrat::Bureaucrat(Bureaucrat& other) : name(other.name) {
 
     *this = other;
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat& other) {
 
-    if (this != &other)
+    if (this != &other) {
         this->grade = other.grade;
+        (std::string)this->name = other.name;
+        std::cout << this->name << std::endl;
+    }
     return (*this);
 }
 
@@ -94,6 +97,6 @@ void Bureaucrat::executeForm(AForm const & form) {
         std::cout << this->name << " executed " << form.getName() << std::endl;
     }
     catch (std::exception& e) {
-      std::cout << this->name << " didn't make it to execute form " << this->name << " because " << e.what() << std::endl;
+      std::cout << this->name << " didn't make it to execute form " << form.getName() << " because " << e.what() << std::endl;
     }
 }

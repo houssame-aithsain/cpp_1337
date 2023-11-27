@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:41:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:47:02 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:39:05 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Form::~Form( void ) {}
 
 Form::Form( void ) : name("form01"), isSigned(false), signGrade(15), executeGrade(70) {}
 
-Form::Form( const int signGrade, const int executeGrade, std::string name ) : name(name), signGrade(signGrade), executeGrade(executeGrade) {
+Form::Form( const int signGrade, const int executeGrade, std::string name ) : name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade) {
 
     if (this->signGrade < 1)
         throw Form::GradeTooHighException();
@@ -24,17 +24,15 @@ Form::Form( const int signGrade, const int executeGrade, std::string name ) : na
         throw Form::GradeTooLowException();
 }
 
-Form::Form( Form& other ) : signGrade(other.signGrade), executeGrade(other.executeGrade) {
+Form::Form( Form& other ) : name(other.name), signGrade(other.signGrade), executeGrade(other.executeGrade) {
 
     *this = other;
 }
 
 Form& Form::operator=( Form& other ) {
 
-    if (this != &other) {
-        (std::string)this->name = other.name;
+    if (this != &other)
         this->isSigned = other.isSigned;
-    }
     return (*this);
 }
 

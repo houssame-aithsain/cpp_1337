@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:45:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:51:38 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:19:56 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 ShrubberyCreationForm::~ShrubberyCreationForm( void ){}
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm("Shrubbery reque", 25, 5) {}
+ShrubberyCreationForm::ShrubberyCreationForm( void ) : AForm("Shrubbery reque", 145, 137) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm("Shrubbery reque", 25, 5), target(target) {}
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm("Shrubbery reque", 145, 137), target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm( ShrubberyCreationForm& other ) {
 
@@ -78,6 +78,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 
 std::ostream& operator<<(std::ostream& os, ShrubberyCreationForm& other) {
 
-    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade();
+    os << "Form Name: " << other.getName() << ", Form sign Grade: " << other.getSignGrade() << ", Form Execut Grade: " << other.getExecutGrade() << ", Form status: ";
+    if (other.getSign())
+        os << "signed!";
+    else
+        os << "not signed!";
     return (os);
 }

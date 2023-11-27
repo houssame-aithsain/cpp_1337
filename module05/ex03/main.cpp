@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:13:00 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/26 19:23:20 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:10:20 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "Intern.hpp"
 
-int main() {
+void main1() {
 
     Intern n;
     Bureaucrat b("eabase", 2);
@@ -25,7 +25,6 @@ int main() {
     Form* pr = n.makeForm("Presidential reque", "philo");
     Form* ro = n.makeForm("Robotomy reque", "moha");
 
-    // Form a(40, 89, "form01");
     try {
         b.signForm(*sh);
         b.signForm(*pr);
@@ -37,14 +36,13 @@ int main() {
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }
-    // std::cout << a << std::endl;
-    // try {
-    //     Bureaucrat mourad("mourad", 150);
-    //     std::cout << mourad;
-    //     b.gradeIncremen(10);
-    //     b.gradeDecremen(20);
-    // }
-    // catch(std::exception & e) {
-    //     std::cout << e.what() << std::endl;
-    // }
+    delete sh;
+    delete pr;
+    delete ro;
+}
+
+int main() {
+
+    main1();
+    // system("leaks bureaucrat");
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:13:00 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 15:31:53 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:20:41 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,30 @@
 
 int main() {
 
-    Bureaucrat b("eabase", 26);
-    ShrubberyCreationForm sh("home");
-    PresidentialPardonForm pr("cityStreet");
-    RobotomyRequestForm ro("robotec");
+    // Bureaucrat b("eabase", 26);
+    // ShrubberyCreationForm sh("Shrubbery");
+    // PresidentialPardonForm pr("Presidential");
+    // RobotomyRequestForm ro("Robotomy");
 
-    // Form a(40, 89, "form01");
-    try {
-        b.signForm(sh);
-        b.signForm(pr);
-        b.signForm(ro);
-        b.executeForm(sh);
-        b.executeForm(pr);
-        b.executeForm(ro);
-    }
-    catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-    }
-    // std::cout << a << std::endl;
     // try {
-    //     Bureaucrat mourad("mourad", 150);
-    //     std::cout << mourad;
-    //     b.gradeIncremen(10);
-    //     b.gradeDecremen(20);
+    //     b.signForm(sh);
+    //     b.signForm(pr);
+    //     b.signForm(ro);
+    //     b.executeForm(sh);
+    //     b.executeForm(pr);
+    //     b.executeForm(ro);
     // }
-    // catch(std::exception & e) {
+    // catch (std::exception& e) {
     //     std::cout << e.what() << std::endl;
     // }
+
+    Bureaucrat b("eabase", 26);
+    ShrubberyCreationForm sh("Shrubbery");
+    ShrubberyCreationForm sb("Shrubbery1");
+
+    b.signForm(sh);
+    sb = sh;
+
+    std::cout << sh << std::endl;
+    std::cout << sb << std::endl;
 }

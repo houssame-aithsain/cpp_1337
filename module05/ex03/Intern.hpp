@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 10:05:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/27 17:25:20 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:07:57 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Intern {
         ~Intern( void );
         Intern( void );
         Intern( Intern & intern );
+        Intern& operator=(Intern& other);
         AForm* makeForm(std::string formName, std::string formTarget);
         AForm* getPresidential( std::string formTarget );
         AForm* getRobotomy( std::string formTarget );
