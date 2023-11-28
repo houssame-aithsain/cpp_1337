@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverte.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/23 10:01:21 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/11/26 13:12:46 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/11/26 14:24:04 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "ScalarConverte.hpp"
 
+ScalarConverte::~ScalarConverte( void ) {}
 
+ScalarConverte::ScalarConverte( void ) {}
 
-int main() { 
+void ScalarConverte::convert(std::string value) {
 
-    int *ptr;
-   try {
-        ptr[5] = 158;
-   }
-   catch(std::exception& e) {
-
-        std::cout << e.what() << std::endl;
-   }
+    int intValue = stoi();
+    std::cout << value.c_str() << std::endl;
+    std::cout << value.stoi() << std::endl;
+    // std::cout << value.c_str << std::endl;
 }
