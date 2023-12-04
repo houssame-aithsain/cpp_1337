@@ -6,7 +6,7 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/01 14:39:29 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/02 15:15:40 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/12/03 17:50:12 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			=	c++
 
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
-SRC			=	main.cpp ScalarConverte.cpp
+SRC			=	Serialize.cpp main.cpp
 
 NAME		=	convert
 

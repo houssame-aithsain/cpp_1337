@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/11/30 14:08:03 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/12/01 17:25:51 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/12/03 18:01:22 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include <iostream>
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 
-int main(int argc, char *argv[]) {
+class Base {
 
-    char *endPtr;
-
-    float output = std::strtod(argv[1], &endPtr);
-    std::cout << output << std::endl;
-}
+    public:
+        virtual ~Base( void );
+};
+    Base* generate(void);
+    void identify(Base* p);
+    void identify(Base& p);
