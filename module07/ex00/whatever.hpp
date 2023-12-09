@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/04 17:10:08 by hait-hsa         ###   ########.fr       */
+/*   Created: 2023/12/04 16:57:51 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/12/08 18:34:09 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include <iostream>
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 
 template <typename T>
-T functionName(T n1, T n2){
+void swap(T& Fvalue, T& Svalue) {
 
-    if (n1 > n2)
-        return (n1);
-    return (n2);
+    std::swap(Fvalue, Svalue);
 }
 
-int main(int argc, char *argv[]) {
+template <typename T>
+T min(T Fvalue, T Svalue) {
+    
+    if (Fvalue < Svalue)
+        return (Fvalue);
+    return (Svalue);
+}
 
-    char grater;
-
-    grater = functionName<char>(1, 2) + 48;
-    std::cout << "grater numb===> " << grater << std::endl;
+template <typename T>
+T max(T Fvalue, T Svalue) {
+    
+    if (Fvalue > Svalue)
+        return (Fvalue);
+    return (Svalue);
 }
