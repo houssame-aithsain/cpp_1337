@@ -6,7 +6,7 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/09 12:47:00 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/15 15:25:52 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/12/13 18:42:45 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,16 @@ CC			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRC			=	main.cpp
-HEADERS		=	easyfind.hpp
+HEADERS		=	MutantStack.hpp
 
-NAME		=	easyfind
+NAME		=	MutantStack
 
 RM			=	rm -rf
 
 OBJS		=	$(SRC:.cpp=.o)
 
-
 all			:	$(NAME)
+
 $(NAME)		:	$(OBJS) $(HEADERS)
 				$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
