@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 18:40:12 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:19:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void BitcoinExchange::loadDataBase( void ) {
         }
         std::cout << "database has been loaded successfully!" << std::endl;
         fd.close();
+        return ;
     }
+    std::cout << fdErr << std::endl;
+    std::exit(78);
 }
 
 void BitcoinExchange::loadUserFile(std::string fileName) {
@@ -46,20 +49,30 @@ void BitcoinExchange::loadUserFile(std::string fileName) {
     if (fd.is_open()) {
         while(std::getline(fd, line, '\n')) {
             tmp = line.substr(0, line.find(" | "));
-            key.push_back(tmp);
-            userFile[tmp] = line.substr(tmp.length() + 3, line.find("\n"));
+            if (tmp.find(" ") != std::string::npos)
+                throw "";
+            else
+                key.push_back(tmp);
+            line = line.substr(tmp.length() + 3, line.find("\n"));
+            if (line.find(" ") != std::string::npos)
+                throw "";
+            else
+                userFile[tmp] = line;
             // std::cout << userFile[line.substr(0, line.find(" "))] << std::endl;
         }
         std::cout << "user file has been loaded successfully!" << std::endl;
         fd.close();
+        return ;
     }
+    std::cout << fdErr << std::endl;
+    std::exit(77);
 }
 
 void BitcoinExchange::printBitcoinExchange( void ) {
 
+    float result;
     char* container;
     std::string value;
-    float result;
 
     std::deque<std::string>::iterator it = key.begin();
     if (it != key.end())
@@ -80,7 +93,7 @@ void BitcoinExchange::printBitcoinExchange( void ) {
                 std::cout << *it << " => " << userFile[*it] << " = " << std::fixed << std::setprecision(2) << result << std::endl;
         } else if ((std::strcmp(container, "") && container[0]))
             std::cout << "Error: bad input => " << *it << std::endl;
-        else
+        else if (*it < underLimit || *it > uperLimit)
             std::cout << "Error: date out of range => " << *it << std::endl;
     }
 }

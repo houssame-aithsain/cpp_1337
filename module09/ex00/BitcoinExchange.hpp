@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 18:33:39 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:19:37 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 #define underLimit "2009-01-02"
 #define uperLimit "2022-03-29"
+
+#define fdErr "Error: could not open file."
 
 class BitcoinExchange {
 
