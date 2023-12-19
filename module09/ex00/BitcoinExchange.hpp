@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 19:19:37 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:26:35 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ class BitcoinExchange {
         std::map<std::string, std::string> userFile;
         std::deque<std::string> key;
     public:
-        // ~BitcoinExchange( void );
-        // BitcoinExchange( void );
-        // BitcoinExchange( const BitcoinExchange & other );
-        // BitcoinExchange & operator=(const BitcoinExchange & other);
+        ~BitcoinExchange( void );
+        BitcoinExchange( void );
+        BitcoinExchange( const BitcoinExchange & other );
+        BitcoinExchange & operator=(const BitcoinExchange & other);
         void loadDataBase( void );
         void loadUserFile( std::string fileName );
         void printBitcoinExchange( void );

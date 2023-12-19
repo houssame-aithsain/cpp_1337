@@ -6,19 +6,33 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 19:19:32 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:40:08 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-// BitcoinExchange::~BitcoinExchange( void ) {}
+BitcoinExchange::~BitcoinExchange( void ) {}
 
-// BitcoinExchange::BitcoinExchange( void ) {}
+BitcoinExchange::BitcoinExchange( void ) {}
 
-// BitcoinExchange::BitcoinExchange( const BitcoinExchange & other ) {}
+BitcoinExchange::BitcoinExchange( const BitcoinExchange & other ) {
 
-// BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other) {}
+    *this = other;
+}
+
+BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other) {
+
+    if (this != &other) {
+        dataBase.clear();
+        userFile.clear();
+        key.clear();
+        dataBase.insert(other.dataBase.begin(), other.dataBase.end());
+        userFile.insert(other.userFile.begin(), other.userFile.end());
+        key.insert(key.begin(), other.key.begin(), other.key.end());
+    }
+    return (*this);
+}
 
 void BitcoinExchange::loadDataBase( void ) {
 
