@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 19:26:35 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:19:53 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 
 #define fdErr "Error: could not open file."
 
+#define SPACE 32
+#define PIPE 124
+#define HYPHEN 45
+#define NEWLINE 10
+#define NUll 0
+
+#define IS_NUMBER(numb) (((numb >= '0' && numb <= '9') || numb == '-' || numb == '+') ? true : false)
+#define IS_VALIDE(c) (((c != SPACE) && (c != HYPHEN) && (c != NEWLINE) && (c != NUll)) ? true : false)
+
 class BitcoinExchange {
 
     private:
@@ -39,7 +48,9 @@ class BitcoinExchange {
         BitcoinExchange( void );
         BitcoinExchange( const BitcoinExchange & other );
         BitcoinExchange & operator=(const BitcoinExchange & other);
-        void loadDataBase( void );
-        void loadUserFile( std::string fileName );
-        void printBitcoinExchange( void );
+        void dataBaseLoader( void );
+        void userFileLoader( std::string fileName );
+        void BitcoinExchangePrinter( void );
+        bool tokenChecker( std::deque<std::string>::iterator it ); 
+        void tokenCleaner( std::deque<std::string>::iterator it );
 };

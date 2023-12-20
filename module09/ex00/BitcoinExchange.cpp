@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/19 19:40:08 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:34:27 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other) {
     return (*this);
 }
 
-void BitcoinExchange::loadDataBase( void ) {
+void BitcoinExchange::dataBaseLoader( void ) {
 
     std::ifstream fd("data.csv");
     std::string line;
@@ -54,7 +54,7 @@ void BitcoinExchange::loadDataBase( void ) {
     std::exit(78);
 }
 
-void BitcoinExchange::loadUserFile(std::string fileName) {
+void BitcoinExchange::userFileLoader(std::string fileName) {
 
     std::ifstream fd(fileName);
     std::string line;
@@ -62,18 +62,30 @@ void BitcoinExchange::loadUserFile(std::string fileName) {
 
     if (fd.is_open()) {
         while(std::getline(fd, line, '\n')) {
-            tmp = line.substr(0, line.find(" | "));
-            if (tmp.find(" ") != std::string::npos)
-                throw "";
+            // std::cout << "line=>[" << line << "]" << std::endl;
+            if (line.find(SPACE) == std::string::npos)
+                tmp = line.substr(0, line.length());
             else
-                key.push_back(tmp);
-            line = line.substr(tmp.length() + 3, line.find("\n"));
-            if (line.find(" ") != std::string::npos)
-                throw "";
-            else
-                userFile[tmp] = line;
-            // std::cout << userFile[line.substr(0, line.find(" "))] << std::endl;
+                tmp = line.substr(0, line.find(SPACE));
+            key.push_back(tmp);
+            if (line.find("\n") == std::string::npos) {
+                if (tmp.length() == line.length())
+                    line = line.substr(tmp.length(), line.find("\n"));
+                else {
+                    if (line[tmp.length() + 1] == PIPE && line[tmp.length() + 2] != SPACE)
+                        line = line.substr(tmp.length() + 1, line.find("\n"));
+                    else
+                        line = line.substr(tmp.length() + 2, line.find("\n"));
+                }
+            } else
+                line = line.substr(0, line.find("\n"));
+            userFile[tmp] = line;
         }
+        // std::map<std::string, std::string>::iterator mm = userFile.begin();
+        // for (;mm != userFile.end(); mm++) {
+        //     std::cout << "tmp=> [" << mm->first << "]" << std::endl;
+        //     std::cout << "line=> [" << mm->second << "]" << std::endl;
+        // }
         std::cout << "user file has been loaded successfully!" << std::endl;
         fd.close();
         return ;
@@ -82,32 +94,109 @@ void BitcoinExchange::loadUserFile(std::string fileName) {
     std::exit(77);
 }
 
-void BitcoinExchange::printBitcoinExchange( void ) {
+void BitcoinExchange::tokenCleaner( std::deque<std::string>::iterator it ) {
 
-    float result;
-    char* container;
+    std::string value = userFile[*it];
+    std::string date = *it;
+
+    date = date.substr(0, date.find(SPACE));
+    value = value.substr(value.find(SPACE) + 1, value.length() - value.find(SPACE));
+    // insert the valide data
+    userFile.erase(*it);
+    userFile[date] = value;
+    *it = date;
+    //end
+    // std::cout << "-----------------------------------------\n";
+    // for (std::map<std::string, std::string>::iterator mm = userFile.begin(); mm != userFile.end(); mm++) {
+        // std::cout << "key===>[" << mm->first << "]" << std::endl;
+        // std::cout << "value===>[" << mm->second << "]" << std::endl;
+    // }
+    // std::cout << "-----------------------------------------\n";
+}
+
+bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
+
     std::string value;
+    std::string date;
+    int hyphen_count = 0;
+
+    date = *it;
+    value = userFile[date];
+    // std::cout << "date:=> [" << *it << "]" << std::endl;
+    // std::cout << "value:=> [" << userFile[date] << "]" << std::endl;
+    for (size_t i = 0; i < date.size(); i++) {
+        //check for spaces && pipes && hyphen numb
+        if (date[i] == HYPHEN)
+            hyphen_count++;
+        if (hyphen_count > 2 || (date[i] == HYPHEN && !IS_NUMBER(date[i + 1])))
+            return false;
+        if (i == 0 && date[i] == SPACE)
+            return false;
+        if (!date[i] || (date[i] == SPACE && !i))
+            return false;
+        if ((date[i] == SPACE && date[i + 1]) || date[i] == PIPE)
+            return false;
+        // check for non numbers
+        if (IS_VALIDE(date[i]) && !IS_NUMBER(date[i]))
+            return false;
+        if (date[i] == HYPHEN && date[i + 1] == HYPHEN)
+            return false;
+    }
+    for (size_t i = 0; i < value.size(); i++) {
+        //check for spaces && pipes
+        if (i == 0 && value[i] == SPACE)
+            i++;
+        if (!value[i] || (value[i] == SPACE && !i))
+            return false;
+        if ((value[i] == SPACE && value[i + 1]) || value[i] == PIPE)
+            return false;
+        //check for non numbers
+        if (!IS_NUMBER(value[i]) || value[i + 1] == '-' || value[i + 1] == '+')
+            return false;
+    }
+    if (date.empty() || value.empty() || hyphen_count < 2)
+        return false;
+    return true;
+}
+
+void BitcoinExchange::BitcoinExchangePrinter( void ) {
+
+    char *container;
+    std::string userValue;
+    std::string dataBaseValue;
 
     std::deque<std::string>::iterator it = key.begin();
     if (it != key.end())
         it++;
+            std::cout << "-----------------------------------------\n";
     for (; it != key.end(); it++) {
-        value = userFile[*it];
-        result = std::strtod(value.c_str(), &container);
-        if (!strcmp(container, "") && !value.empty() && dataBase.size() > 0 && (*it >= underLimit && *it <= uperLimit)) {
-            std::map<std::string, std::string>::iterator mt = dataBase.upper_bound(*it);
-            mt--;
-            value = mt->second;
-            result = static_cast<float>(result * std::strtod(value.c_str(), &container));
-            if (result < 0)
-                std::cout << "Error: not a positive number." << std::endl;
-            else if (result > std::numeric_limits<float>::max())
-                std::cout << "Error: too large a number." << std::endl;
-            else
-                std::cout << *it << " => " << userFile[*it] << " = " << std::fixed << std::setprecision(2) << result << std::endl;
-        } else if ((std::strcmp(container, "") && container[0]))
+        if (!tokenChecker(it)) {
             std::cout << "Error: bad input => " << *it << std::endl;
-        else if (*it < underLimit || *it > uperLimit)
-            std::cout << "Error: date out of range => " << *it << std::endl;
+            continue;
+        }
+        if (*it < underLimit || *it > uperLimit) {
+            std::cout << "Error: out of range => " << *it << std::endl;
+            continue;
+        }
+        tokenCleaner(it);
+        userValue = userFile[*it];
+        std::map<std::string, std::string>::iterator mm = dataBase.upper_bound(*it);
+        mm--;
+        dataBaseValue = mm->second;
+        if (std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container) < 0) {
+            std::cout << "Error: not a positive number." << std::endl;
+            continue;
+        }
+        if ((std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container) > std::numeric_limits<float>::max())) {
+            std::cout << "Error: too large a number." << std::endl;
+            continue;
+        }
+        std::cout << *it << " | " << std::fixed << std::setprecision(2) << static_cast<float>(std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container)) << std::endl;
     }
+            std::cout << "-----------------------------------------\n";
+    // std::map<std::string, std::string>::iterator mm = userFile.begin();
+    // for (;mm != userFile.end(); mm++) {
+    //     std::cout << "tmp=> [" << mm->first << "]" << std::endl;
+    //     std::cout << "line=> [" << mm->second << "]" << std::endl;
+    // }
 }
