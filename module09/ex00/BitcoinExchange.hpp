@@ -6,13 +6,14 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/21 16:52:43 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/22 20:32:32 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <exception>
@@ -24,6 +25,10 @@
 #define userErr "failed to load user file!"
 #define fdErr "Error: could not open file."
 #define badInput "Error: bad input => "
+#define outOfRange "Error: out of range => "
+#define Nnumber "Error: not a positive number."
+#define Lnumber "Error: too large a number."
+#define LINE "---------------------------------------"
 
 #define underLimit 20090102
 #define uperLimit 20220329
@@ -36,6 +41,7 @@
 
 #define IS_NUMBER(numb) (((numb >= '0' && numb <= '9') || numb == '-' || numb == '+' || numb == '.') ? true : false)
 #define IS_VALIDE(c) (((c != SPACE) && (c != HYPHEN) && (c != NEWLINE) && (c != NUll)) ? true : false)
+#define underUperLimits(date) ((date < underLimit || date > uperLimit) ? true : false)
 
 class BitcoinExchange {
 
@@ -43,6 +49,7 @@ class BitcoinExchange {
         std::map<std::string, std::string> dataBase;
         std::map<std::string, std::string> userFile;
         std::deque<std::string> key;
+        int Date;
     public:
         ~BitcoinExchange( void );
         BitcoinExchange( void );
@@ -53,5 +60,5 @@ class BitcoinExchange {
         void BitcoinExchangePrinter( void );
         bool tokenChecker( std::deque<std::string>::iterator it ); 
         void tokenCleaner( std::deque<std::string>::iterator it );
-        bool underUperLimits(std::string value);
+        bool formatChecker(std::string value);
 };
