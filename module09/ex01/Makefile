@@ -5,18 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/09 12:47:00 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/21 13:26:12 by hait-hsa         ###   ########.fr        #
+#    Created: 2023/12/21 12:05:37 by hait-hsa          #+#    #+#              #
+#    Updated: 2023/12/21 12:06:15 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 CC			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 
-SRC			=	main.cpp BitcoinExchange.cpp
-HEADERS		=	BitcoinExchange.hpp
+SRC			=	main.cpp RPN.cpp
+HEADERS		=	RPN.hpp
 
-NAME		=	btc
+NAME		=	RPN
 
 RM			=	rm -rf
 

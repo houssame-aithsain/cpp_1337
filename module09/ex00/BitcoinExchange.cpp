@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/20 17:34:27 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:29:50 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ BitcoinExchange::BitcoinExchange( const BitcoinExchange & other ) {
 BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other) {
 
     if (this != &other) {
-        dataBase.clear();
-        userFile.clear();
-        key.clear();
-        dataBase.insert(other.dataBase.begin(), other.dataBase.end());
-        userFile.insert(other.userFile.begin(), other.userFile.end());
-        key.insert(key.begin(), other.key.begin(), other.key.end());
+        dataBase = other.dataBase;
+        userFile = other.userFile;
+        key = other.key;
     }
     return (*this);
 }
@@ -118,7 +115,8 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
 
     std::string value;
     std::string date;
-    int hyphen_count = 0;
+    int hyphenCount = 0;
+    int pointCount = 0;
 
     date = *it;
     value = userFile[date];
@@ -126,9 +124,11 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
     // std::cout << "value:=> [" << userFile[date] << "]" << std::endl;
     for (size_t i = 0; i < date.size(); i++) {
         //check for spaces && pipes && hyphen numb
+        if (date[0] == HYPHEN)
+            return false;
         if (date[i] == HYPHEN)
-            hyphen_count++;
-        if (hyphen_count > 2 || (date[i] == HYPHEN && !IS_NUMBER(date[i + 1])))
+            hyphenCount++;
+        if (hyphenCount > 2 || (date[i] == HYPHEN && !IS_NUMBER(date[i + 1])))
             return false;
         if (i == 0 && date[i] == SPACE)
             return false;
@@ -144,6 +144,8 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
     }
     for (size_t i = 0; i < value.size(); i++) {
         //check for spaces && pipes
+         if (value[i] == '.')
+            pointCount++;
         if (i == 0 && value[i] == SPACE)
             i++;
         if (!value[i] || (value[i] == SPACE && !i))
@@ -154,9 +156,26 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
         if (!IS_NUMBER(value[i]) || value[i + 1] == '-' || value[i + 1] == '+')
             return false;
     }
-    if (date.empty() || value.empty() || hyphen_count < 2)
+    if (date.empty() || value.empty() || hyphenCount < 2 || pointCount > 1)
         return false;
     return true;
+}
+
+bool BitcoinExchange::underUperLimits(std::string value) {
+
+    std::string numb;
+    char *container;
+    size_t x = 0;
+    float user;
+
+    // check date format
+    
+    for (size_t i = 0; i < value.size(); i++) {
+        if (value[i] != HYPHEN)
+            numb[x++] = value[i];
+    }
+    user = static_cast<float>(std::strtod(numb.c_str(), &container));
+    return (user < underLimit || user > uperLimit);
 }
 
 void BitcoinExchange::BitcoinExchangePrinter( void ) {
@@ -164,17 +183,19 @@ void BitcoinExchange::BitcoinExchangePrinter( void ) {
     char *container;
     std::string userValue;
     std::string dataBaseValue;
+    double result;
 
+    std::cout << std::setprecision(std::numeric_limits<double>::digits10 + 1);
     std::deque<std::string>::iterator it = key.begin();
     if (it != key.end())
         it++;
             std::cout << "-----------------------------------------\n";
     for (; it != key.end(); it++) {
         if (!tokenChecker(it)) {
-            std::cout << "Error: bad input => " << *it << std::endl;
+            std::cout << badInput << *it << std::endl;
             continue;
         }
-        if (*it < underLimit || *it > uperLimit) {
+        if (underUperLimits(*it)) {
             std::cout << "Error: out of range => " << *it << std::endl;
             continue;
         }
@@ -183,15 +204,16 @@ void BitcoinExchange::BitcoinExchangePrinter( void ) {
         std::map<std::string, std::string>::iterator mm = dataBase.upper_bound(*it);
         mm--;
         dataBaseValue = mm->second;
-        if (std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container) < 0) {
+        if (std::strtod(userValue.c_str(), &container) < 0) {
             std::cout << "Error: not a positive number." << std::endl;
             continue;
         }
-        if ((std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container) > std::numeric_limits<float>::max())) {
+        if ((std::strtod(userValue.c_str(), &container) > 1000)) {
             std::cout << "Error: too large a number." << std::endl;
             continue;
         }
-        std::cout << *it << " | " << std::fixed << std::setprecision(2) << static_cast<float>(std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container)) << std::endl;
+        result = (std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container));
+        std::cout << *it << " | " << result << std::endl;
     }
             std::cout << "-----------------------------------------\n";
     // std::map<std::string, std::string>::iterator mm = userFile.begin();
