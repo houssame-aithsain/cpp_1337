@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/22 20:32:40 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/24 08:55:53 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,9 +154,9 @@ bool BitcoinExchange::formatChecker(std::string value) {
     for (int i = 0; std::getline(s, tmp, '-') && i < 3; i++) {
         if (i == 0 && tmp.size() != 4)
             return false;
-        if (i == 1 && (tmp.size() != 2 || (std::atoi(tmp.c_str()) < 0 || std::atoi(tmp.c_str()) > 12)))
+        if (i == 1 && (!std::atoi(tmp.c_str()) || tmp.size() != 2 || (std::atoi(tmp.c_str()) < 0 || std::atoi(tmp.c_str()) > 12)))
             return false;
-        if (i == 2 && (tmp.size() != 2 || (std::atoi(tmp.c_str()) < 0 || std::atoi(tmp.c_str()) > 32)))
+        if (i == 2 && (!std::atoi(tmp.c_str()) || tmp.size() != 2 || (std::atoi(tmp.c_str()) < 0 || std::atoi(tmp.c_str()) > 31)))
             return false;
         toNumber += tmp;
     }
