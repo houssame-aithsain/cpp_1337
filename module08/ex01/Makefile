@@ -6,12 +6,12 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/09 12:47:00 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/13 19:06:45 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/12/25 16:44:57 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=	#-Wall -Wextra -Werror -std=c++98
 
 SRC			=	main.cpp Span.cpp
 HEADERS		=	Span.hpp
