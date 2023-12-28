@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:34 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/25 20:27:33 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/28 10:49:47 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ int main (int ac, char   *av[]) {
             head.inputParser(av[i]);
         try {
             head.inputCheckToConvert();
+            head.mergeSort();
+            head.insertSort();
         } catch(const char  * err) {
             std::cout << err << std::endl;
         }
-        head.mergeSort();
-        head.pairesSorting();
-        head.splitMainPendElements();
     } else
         std::cout << USAGE << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/25 20:28:49 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:13:46 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,15 @@
 // PmergeMe::~PmergeMe( void ) {
 
 // }
-// PmergeMe::PmergeMe( void ) {
+PmergeMe::PmergeMe( void ) : count(RANGE) {
 
-// }
+}
 // PmergeMe::PmergeMe( const PmergeMe & other ) {
 
 // }
 // PmergeMe & PmergeMe::operator=(const PmergeMe & other) {
 
 // }
-
-void PmergeMe::printPaires( void ) {
-
-    for (size_t i = 0; i < pairesSize; i++) {
-        std::cout << "{";
-        for (size_t j = 0; j < paires[i].size(); j++) {
-            std::cout << "[" << paires[i][j] << "]";
-        }
-        std::cout << "}\n";
-    }
-}
 
 void PmergeMe::inputParser(std::string str) {
 
@@ -45,6 +34,8 @@ void    PmergeMe::inputCheckToConvert( void ) {
 
     std::string value;
     std::stringstream s(sNumbers);
+    std::vector<int> tmp;
+
 
     while (s >> value && value.size()) {
         for (size_t i = BEGIN; i < value.size(); i++) {
@@ -53,72 +44,118 @@ void    PmergeMe::inputCheckToConvert( void ) {
         }
         container.push_back(std::atoi(value.c_str()));
     }
-        // print the container values to check
-    // for (size_t i = 0; i < container.size(); i++)
-    //     std::cout << "[" << container[i] << "]" << std::endl;
+    if (container.size() % 2)
+        pairesSize = container.size() - NEXT; // you stile need one comdition here for odds.
+    else
+        pairesSize = container.size();
+    for (size_t count = BEGIN; count < pairesSize; count++) {
+        if (container[count] > container[count + NEXT])
+            std::swap(container[count], container[count + NEXT]);
+        if ((count + NEXT) != pairesSize)
+            count++;
+    }
+    for (size_t max = BEGIN; max < pairesSize; max++) {
+        tmp.insert(tmp.begin(), (container.begin() + max), container.begin() + max + RANGE);
+        paires.push_back(tmp);
+        tmp.clear();
+        max += NEXT;
+    }
+    if (container.size() != pairesSize)
+        container.erase(container.begin(), container.begin() + (pairesSize));
 }
 
 void PmergeMe::mergeSort( void ) {
 
-    size_t x = 0;
-    size_t i = 0;
-
-    if (!(container.size() % 2))
-        pairesSize = container.size();
-    else
-        pairesSize = container.size() - 1;
-    // paires sorting...
-    for (size_t count = 0; count < pairesSize; count++) {
-        if (container[count] > container[count + 1])
-            std::swap(container[count], container[count + 1]);
-        if ((count + 1) != pairesSize)
-            count++;
+    if (paires.size() < 2 || (paires[BEGIN].size() != paires[NEXT].size())) {
+        count = RANGE;
+        if (container.size() == NEXT)
+            paires.push_back(container);
+            // just to print result
+        for (size_t i = BEGIN; i < paires.size(); i++) {
+            std::cout << "{";
+            for (size_t x = BEGIN; x < paires[i].size(); x++)
+                std::cout << "[" << paires[i][x] << "]";
+            std::cout << "}\n";
+        }
+            // end
+        std::cout << "------------------------------\n";
+        return ;
     }
-    // print the container values to check
-    // for (size_t i = 0; i < container.size(); i++) {
-    //         std::cout << "[" << container[i] << "]" << std::endl;
-    // }
-    // std::cout << "---------------" << std::endl;
-    // paires allocater
-    paires =  new std::vector<int>[pairesSize / 2];
-    // split paires
-    for (; i < pairesSize; i++) {
-        if (i < pairesSize) {
-            paires[x].insert(paires[x].begin(), (container.begin() + i), container.begin() + i + 2);
-            i++;
-            x++;
+
+    //swap
+    for (size_t i = BEGIN; i < paires.size(); i++) {
+        if (i + NEXT < paires.size() && (paires[i].size() == paires[i + NEXT].size()) && paires[i][count - NEXT] > paires[i + NEXT][count - NEXT])
+            std::swap(paires[i], paires[i + NEXT]);
+        i += NEXT;
+    }
+    //insert
+    for (size_t i = BEGIN; i < paires.size(); i++) {
+        if (i + NEXT < paires.size() && (paires[i].size() == paires[i + NEXT].size())) {
+            paires[i].insert(paires[i].end(), paires[i + NEXT].begin(), paires[i + NEXT].end());
+            paires.erase(paires.begin() + (i + NEXT));
         }
     }
-    container.erase(container.begin(), container.begin() + pairesSize);
-    std::cout << container.size() << std::endl;
-    pairesSize = pairesSize / 2;
+    //print
+    count *= RANGE;
+    mergeSort();
 }
 
-void PmergeMe::pairesSorting( void ) {
+bool PmergeMe::vecCmp(std::vector<int> a, std::vector<int> b) {
+
+    std::cout << "================================\n";
+    std::cout << "a = > " << a[a.size()] << std::endl;
+    std::cout << "b = > " << b[b.size()] << std::endl;
+    return (a[a.size() - NEXT] > b[b.size() - NEXT]);
+}
+
+
+void PmergeMe::insertSort( void ) {
+
+    std::vector<int> tmp;
+    bool swetcher = true;
+    size_t counter;
+
+    // mian puch
+    for (size_t i = BEGIN; i < paires.size();) {
+        if (mainChain.size() && mainChain[BEGIN].size() == paires[i].size()) {
+            pendChain.push_back(paires[i]);
+            paires.erase(paires.begin() + i);
+            continue;
+        }
+        if ((i && mainChain.size() && mainChain[BEGIN].size() == paires[i].size()) || swetcher) {
+            for (counter = BEGIN; counter < (paires[i].size() / 2); counter++)
+                tmp.push_back(paires[i][counter]);
+            std::vector<std::vector<int> >::iterator it =  std::lower_bound(mainChain.begin(), mainChain.end(), tmp, vecCmp);
+            if (it != mainChain.end()) {
+                std::vector<std::vector<int> >::difference_type position = std::distance(mainChain.begin(), it);
+                std::cout << position << std::endl;
+            }
+            exit(0);
+            // mainChain.insert(it - mainChain.begin(), mainChain.begin(), mainChain.begin());
+            paires[i].erase(paires[i].begin(), paires[i].begin() + counter);
+            if (paires.size())
+                mainChain.push_back(paires[i]);
+            if (paires[i].size())
+                paires.erase(paires.begin() + i);
+            tmp.clear();
+            swetcher = false;
+            continue;
+        }
+        i++;
+    }
     
-    for (size_t i = 0; i < pairesSize; i++) {
-        for (size_t j = 0; j < pairesSize - i - 1; j++) {
-            if (i + 1 < pairesSize && paires[j][1] > paires[j + 1][1])
-                std::swap(paires[j], paires[j + 1]);
-        }
+    std::cout << "----------MAIN--------\n";
+    for (size_t i = BEGIN; i < mainChain.size(); i++) {
+        std::cout << "{";
+        for (size_t x = BEGIN; x < mainChain[i].size(); x++)
+            std::cout << "[" << mainChain[i][x] << "]";
+        std::cout << "}\n";
     }
-    printPaires();
-}
-
-void PmergeMe::splitMainPendElements( void ) {
-
-    // get the main chain values
-    for (size_t i = 0; i < pairesSize; i++)
-        mainChain.push_back(paires[i].at(1));
-    // get the pend values
-    for (size_t i = 0; i < pairesSize; i++)
-        pendElements.push_back(paires[i].at(0));
-    if (container.size())
-        pendElements.push_back(container.at(0));
-    // print main && pending chains
-    // for (size_t i = 0; i < mainChain.size(); i++)
-    //     std::cout << "main chain ==> [" << mainChain[i] << "]" << std::endl;
-    // std::cout << "*********\n";
-    // for (size_t i = 0; i < pendElements.size(); i++)
-    //     std::cout << "main chain ==> [" << pendElements[i] << "]" << std::endl;
+    std::cout << "----------PEND--------\n";
+    for (size_t i = BEGIN; i < pendChain.size(); i++) {
+        std::cout << "{";
+        for (size_t x = BEGIN; x < pendChain[i].size(); x++)
+            std::cout << "[" << pendChain[i][x] << "]";
+        std::cout << "}\n";
+    }
 }

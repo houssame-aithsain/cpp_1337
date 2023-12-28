@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/21 12:03:47 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:15:12 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,29 @@
 #include <string>
 #include <exception>
 #include <limits>
+#include <vector>
 
+#define LIMITS 10
 
-#define underLimit "2009-01-02"
-#define uperLimit "2022-03-29"
+bool toCmp(int first, int second) {
+
+    return (first > second);
+}
 
 int main() {
-    // std::cout << (uperLimit < "2009-02-3571101423") << std::endl;
-    float is = 206.68888;
 
-    // std::cout.unsetf( std::ios_base::floatfield );
-    std::cout.setf(std::ios::fixed, std:: ios::floatfield);
-    std::cout << std::setprecision(2) << std::endl;
-    std::cout << is << std::endl;
-    // std::cout.setf(std::ios::fixed, std:: ios::floatfield);
-    // std::cout << is << std::endl;
+    std::vector<int> vec;
+
+    srand(time(NULL));
+    int num = 10;
+
+    for (size_t i = 0; i < LIMITS; i++)
+        vec.push_back(rand() % 20);
+
+    std::vector<int>::iterator it = std::lower_bound(vec.begin(), vec.end(), num);
+
+    std::cout << "it===> " << *it << std::endl;
+
+    for (size_t i = 0; i < LIMITS; i++)
+        std::cout << vec.at(i) << std::endl;
 }
