@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/24 08:55:53 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/30 21:53:41 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other) {
     if (this != &other) {
         dataBase = other.dataBase;
         userFile = other.userFile;
-        key = other.key;
     }
     return (*this);
 }
@@ -62,7 +61,6 @@ void BitcoinExchange::userFileLoader(std::string fileName) {
                 tmp = line.substr(0, line.length());
             else
                 tmp = line.substr(0, line.find(SPACE));
-            key.push_back(tmp);
             if (line.find("\n") == std::string::npos) {
                 if (tmp.length() == line.length())
                     line = line.substr(tmp.length(), line.find("\n"));
@@ -74,7 +72,7 @@ void BitcoinExchange::userFileLoader(std::string fileName) {
                 }
             } else
                 line = line.substr(0, line.find("\n"));
-            userFile[tmp] = line;
+            userFile.push_back(std::make_pair(tmp, line));
         }
         std::cout << "user file has been loaded successfully!" << std::endl;
         std::cout << LINE << std::endl;
@@ -85,27 +83,26 @@ void BitcoinExchange::userFileLoader(std::string fileName) {
     std::exit(77);
 }
 
-void BitcoinExchange::tokenCleaner( std::deque<std::string>::iterator it ) {
+void BitcoinExchange::tokenCleaner( std::list<std::pair<std::string, std::string> >::iterator it ) {
 
-    std::string value = userFile[*it];
-    std::string date = *it;
+    std::string value = it->second;
+    std::string date = it->first;
 
     date = date.substr(0, date.find(SPACE));
     value = value.substr(value.find(SPACE) + 1, value.length() - value.find(SPACE));
-    userFile.erase(*it);
-    userFile[date] = value;
-    *it = date;
+    it->second = value;
+    it->first = date;
 }
 
-bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
+bool BitcoinExchange::tokenChecker( std::list<std::pair<std::string, std::string> >::iterator it ) {
 
     std::string value;
     std::string date;
     int hyphenCount = 0;
     int pointCount = 0;
 
-    date = *it;
-    value = userFile[date];
+    date = it->first;
+    value = it->second;
     for (size_t i = 0; i < date.size(); i++) {
         //check for spaces && pipes && hyphen numb
         if (date[0] == HYPHEN)
@@ -128,7 +125,7 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
     }
     for (size_t i = 0; i < value.size(); i++) {
         //check for spaces && pipes
-         if (value[i] == '.')
+        if (value[i] == '.')
             pointCount++;
         if (i == 0 && value[i] == SPACE)
             i++;
@@ -140,7 +137,7 @@ bool BitcoinExchange::tokenChecker( std::deque<std::string>::iterator it ) {
         if (!IS_NUMBER(value[i]) || value[i + 1] == HYPHEN || value[i + 1] == '+')
             return false;
     }
-    if (date.empty() || value.empty() || hyphenCount < 2 || pointCount > 1)
+    if (!date.size() || !value.size() || hyphenCount < 2 || pointCount > 1)
         return false;
     return true;
 }
@@ -172,20 +169,21 @@ void BitcoinExchange::BitcoinExchangePrinter( void ) {
     double result;
 
     std::cout << std::setprecision(std::numeric_limits<double>::digits10 + 1);
-    std::deque<std::string>::iterator it = key.begin();
-    if (it != key.end())
+    std::list<std::pair<std::string, std::string> >::iterator it = userFile.begin();
+    if (it != userFile.end())
         it++;
-    for (; it != key.end(); it++) {
-        if (!tokenChecker(it) || !formatChecker(*it)) {
-            std::cout << badInput << *it << std::endl;
+    for (; it != userFile.end(); it++) {
+        if (!tokenChecker(it) || !formatChecker(it->first)) {
+            std::cout << badInput << it->first << std::endl;
             continue;
-        } if (underUperLimits(Date)) {
-            std::cout << outOfRange << *it << std::endl;
+        }
+        if (underUperLimits(Date)) {
+            std::cout << outOfRange << it->first << std::endl;
             continue;
         }
         tokenCleaner(it);
-        userValue = userFile[*it];
-        std::map<std::string, std::string>::iterator mm = dataBase.upper_bound(*it);
+        userValue = it->second;
+        std::map<std::string, std::string>::iterator mm = dataBase.upper_bound(it->first);
         mm--;
         dataBaseValue = mm->second;
         if (std::strtod(userValue.c_str(), &container) < 0) {
@@ -196,6 +194,6 @@ void BitcoinExchange::BitcoinExchangePrinter( void ) {
             continue;
         }
         result = (std::strtod(userValue.c_str(), &container) * std::strtod(dataBaseValue.c_str(), &container));
-        std::cout << *it << " | " << result << std::endl;
+        std::cout << it->first << " | " <<  result << std::endl;
     }
 }

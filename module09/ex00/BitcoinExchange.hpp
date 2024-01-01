@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:19:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/23 15:04:59 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/30 20:06:34 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string>
 #include <exception>
 #include <limits>
-#include <deque>
+#include <list>
 #include <map>
 
 #define dataErr "failed to load database!"
@@ -47,8 +47,7 @@ class BitcoinExchange {
 
     private:
         std::map<std::string, std::string> dataBase;
-        std::map<std::string, std::string> userFile;
-        std::deque<std::string> key;
+        std::list<std::pair<std::string, std::string> > userFile;
         int Date;
     public:
         ~BitcoinExchange( void );
@@ -58,7 +57,7 @@ class BitcoinExchange {
         void dataBaseLoader( void );
         void userFileLoader( std::string fileName );
         void BitcoinExchangePrinter( void );
-        bool tokenChecker( std::deque<std::string>::iterator it ); 
-        void tokenCleaner( std::deque<std::string>::iterator it );
+        bool tokenChecker( std::list<std::pair<std::string, std::string> >::iterator it ); 
+        void tokenCleaner( std::list<std::pair<std::string, std::string> >::iterator it );
         bool formatChecker(std::string value);
 };

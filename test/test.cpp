@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:33:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/28 11:15:12 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/01 20:29:15 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,13 @@
 #include <string>
 #include <exception>
 #include <limits>
-#include <vector>
+#include <deque>
 
 #define LIMITS 10
 
-bool toCmp(int first, int second) {
+int main () {
 
-    return (first > second);
-}
+    std::deque<int> de;
 
-int main() {
-
-    std::vector<int> vec;
-
-    srand(time(NULL));
-    int num = 10;
-
-    for (size_t i = 0; i < LIMITS; i++)
-        vec.push_back(rand() % 20);
-
-    std::vector<int>::iterator it = std::lower_bound(vec.begin(), vec.end(), num);
-
-    std::cout << "it===> " << *it << std::endl;
-
-    for (size_t i = 0; i < LIMITS; i++)
-        std::cout << vec.at(i) << std::endl;
+    de.erase(de.begin(), de.begin() + 10);
 }
