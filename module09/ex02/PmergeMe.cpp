@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2024/01/01 20:26:31 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/01 21:53:09 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ PmergeMe::~PmergeMe( void ) {
     if (check())
         std::cout << GREEN << "<<<<<ALL GOOD>>>>" << std::endl;
     else
-        std::cout << RED << "<<<<ooOOPS>>>>" << std::endl;
+        std::cout << RED << "<<<<oo0OOPS>>>>" << std::endl;
 }
 
 PmergeMe::PmergeMe( void ) : count(NEXT) {
@@ -76,7 +76,7 @@ void    PmergeMe::inputCheckToConvert( void ) {
         }
         container.push_back(std::atoi(value.c_str()));
     }
-    if (container.size() > 10000)
+    if (container.size() > MAX)
         throw "too much input";
     copyContainer = container;
 }
@@ -114,41 +114,10 @@ void    PmergeMe::containerToMainPend( void ) {
 void    PmergeMe::insertPendToMain( void ) {
 
     // range
-    std::vector<int> rangeInsertion;
-    rangeInsertion.push_back(3);
-    rangeInsertion.push_back(7);
-    rangeInsertion.push_back(15);
-    rangeInsertion.push_back(31);
-    rangeInsertion.push_back(63);
-    rangeInsertion.push_back(127);
-    rangeInsertion.push_back(255);
-    rangeInsertion.push_back(511);
-    rangeInsertion.push_back(1023);
-    rangeInsertion.push_back(2047);
-    rangeInsertion.push_back(4095);
-    rangeInsertion.push_back(8191);
-    rangeInsertion.push_back(16383);
-    rangeInsertion.push_back(32767);
-    // totalInsertion
-    std::vector<int> totalInsertion;
-    totalInsertion.push_back(2);
-    totalInsertion.push_back(2);
-    totalInsertion.push_back(6);
-    totalInsertion.push_back(10);
-    totalInsertion.push_back(22);
-    totalInsertion.push_back(42);
-    totalInsertion.push_back(86);
-    totalInsertion.push_back(170);
-    totalInsertion.push_back(342);
-    totalInsertion.push_back(682);
-    totalInsertion.push_back(1366);
-    totalInsertion.push_back(2730);
-    totalInsertion.push_back(5462);
-    totalInsertion.push_back(10922);
-    totalInsertion.push_back(21846);
-    totalInsertion.push_back(43690);
-    totalInsertion.push_back(87382);
-    totalInsertion.push_back(174762);
+    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767};
+    int ti[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202};
+    std::vector<int> rangeInsertion(ri, ri + (sizeof(ri) / sizeof(ri[BEGIN])));
+    std::vector<int> totalInsertion(ti, ti + (sizeof(ti) / sizeof(ti[BEGIN])));
 
     size_t counter = BEGIN;
     size_t rangeToInsert = rangeInsertion[BEGIN];
@@ -175,15 +144,11 @@ void    PmergeMe::insertPendToMain( void ) {
             position = pendChain.size() - NEXT;
         if (numberOfInsertion > pendChain.size())
             numberOfInsertion = pendChain.size();
-        // std::cout << "number of insertion =====> " << numberOfInsertion << std::endl;
-        // std::cout << "position ===> " << position << std::endl;
-        // std::cout << "------------------" << std::endl;
         std::vector<std::vector<int> >::iterator it = std::lower_bound(mainChain.begin(), mainChain.begin() + rangeToInsert, pendChain[position], vecCmp);
         mainChain.insert(it, pendChain[position]);
         counter += NEXT;
         position -= NEXT;
     }
-    // std::cout << "*******************out of while*******************\n";
 }
 
 void PmergeMe::mergeInsertionSort( void ) {
@@ -234,14 +199,155 @@ bool PmergeMe::vecCmp(std::vector<int> a, std::vector<int> b) {
     return (a[a.size() - NEXT] < b[b.size() - NEXT]);
 }
 
-void PmergeMe::print( clock_t start, clock_t end ) {
+// DEQUE
 
-    std::cout << "\n--------counter[" << cmpCount << "]---------\n";
+void    PmergeMe::DinputCheckToConvert( void ) {
+
+    std::string value;
+    std::stringstream s(sNumbers);
+    std::deque<int> tmp;
+
+
+    while (s >> value && value.size()) {
+        for (size_t i = BEGIN; i < value.size(); i++) {
+            if (!Ncheker(value[i]))
+                throw BADiNput;
+        }
+        Dcontainer.push_back(std::atoi(value.c_str()));
+    }
+    if (Dcontainer.size() > MAX)
+        throw "too much input";
+    DcopyContainer = Dcontainer;
+}
+
+void    PmergeMe::DcontainerToPaires( void ) {
+   
+    while (Dcontainer.size()) {
+        if (count > Dcontainer.size())
+            break;
+        Dtmp.insert(Dtmp.begin(), Dcontainer.begin(), Dcontainer.begin() + count);
+        Dpaires.push_back(Dtmp);
+        Dcontainer.erase(Dcontainer.begin(), Dcontainer.begin() + count);
+        Dtmp.clear();
+    }
+}
+
+
+void    PmergeMe::DcontainerToMainPend( void ) {
+
+    count /= RANGE;
+    while (Dcontainer.size() && count > NEXT) {
+        Dtmp.clear();
+        Dtmp.insert(Dtmp.begin(), Dcontainer.begin(), Dcontainer.begin() + (count / RANGE));
+        DpendChain.push_back(Dtmp);
+        Dcontainer.erase(Dcontainer.begin(), Dcontainer.begin() + (count / RANGE));
+        Dtmp.clear();
+        Dtmp.insert(Dtmp.begin(), Dcontainer.begin(), Dcontainer.begin() + (count / RANGE));
+        if (Dtmp.size())
+            DmainChain.push_back(Dtmp);
+        Dtmp.clear();
+        Dcontainer.erase(Dcontainer.begin(), Dcontainer.begin() + (count / RANGE));
+    }
+}
+
+void    PmergeMe::DinsertPendToMain( void ) {
+
+    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767};
+    int ti[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202};
+    std::deque<int> rangeInsertion(ri, ri + (sizeof(ri) / sizeof(ri[BEGIN])));
+    std::deque<int> totalInsertion(ti, ti + (sizeof(ti) / sizeof(ti[BEGIN])));
+
+    size_t counter = BEGIN;
+    size_t rangeToInsert = rangeInsertion[BEGIN];
+    size_t numberOfInsertion = totalInsertion[BEGIN];
+    size_t position = numberOfInsertion - NEXT;
+ 
+    while (DpendChain.size()) {
+        if (counter >= numberOfInsertion) {
+            if (numberOfInsertion < DpendChain.size())
+                DpendChain.erase(DpendChain.begin(), DpendChain.begin() + numberOfInsertion);
+            else
+                DpendChain.clear();
+            rangeInsertion.erase(rangeInsertion.begin());
+            totalInsertion.erase(totalInsertion.begin());
+            rangeToInsert = rangeInsertion[BEGIN];
+            numberOfInsertion = totalInsertion[BEGIN];
+            position = numberOfInsertion - NEXT;
+            counter = BEGIN;
+            continue;
+        }
+        if (rangeToInsert > DmainChain.size())
+            rangeToInsert = DmainChain.size();
+        if (position > DpendChain.size() - NEXT)
+            position = DpendChain.size() - NEXT;
+        if (numberOfInsertion > DpendChain.size())
+            numberOfInsertion = DpendChain.size();
+        std::deque<std::deque<int> >::iterator it = std::lower_bound(DmainChain.begin(), DmainChain.begin() + rangeToInsert, DpendChain[position], deqCmp);
+        DmainChain.insert(it, DpendChain[position]);
+        counter += NEXT;
+        position -= NEXT;
+    }
+}
+
+void PmergeMe::DmergeInsertionSort( void ) {
+
+    std::deque<int> remainder;
+
+    if (count > Dcontainer.size())
+        return;
+    DcontainerToPaires();
+    if (!Dcontainer.empty()) {
+        remainder.insert(remainder.begin(), Dcontainer.begin(), Dcontainer.end());
+        Dcontainer.clear();
+    }
+    // swap
+    for (size_t i = BEGIN; i < Dpaires.size(); i++) {
+        if (i + NEXT < Dpaires.size() && deqCmp(Dpaires[i + NEXT], Dpaires[i]))
+            std::swap(Dpaires[i], Dpaires[i + NEXT]);
+        i += NEXT;
+    }
+    // copy to the main
+    while (Dpaires.size()) {
+        for (size_t i = BEGIN; i < Dpaires[BEGIN].size(); i++)
+            Dcontainer.push_back(Dpaires[BEGIN][i]);
+        Dpaires.erase(Dpaires.begin());
+    }
+    count *= RANGE;
+    DmergeInsertionSort();
+    // insert
+    DcontainerToMainPend();
+    // insert the remainder
+    if (DpendChain.size()) {
+        DmainChain.insert(DmainChain.begin(), DpendChain[BEGIN]);
+        DpendChain.erase(DpendChain.begin());
+    }
+    if (remainder.size())
+        DpendChain.push_back(remainder);
+    DinsertPendToMain();
+    while (DmainChain.size()) {
+        for (size_t i = BEGIN; i < DmainChain[BEGIN].size(); i++)
+            Dcontainer.push_back(DmainChain[BEGIN][i]);
+        DmainChain.erase(DmainChain.begin());
+    }
+}
+
+bool PmergeMe::deqCmp(std::deque<int> a, std::deque<int> b) {
+
+    cmpCount++;
+    return (a[a.size() - NEXT] < b[b.size() - NEXT]);
+}
+
+// END DEQUE
+
+void PmergeMe::print( clock_t start, clock_t end, clock_t Dstart, clock_t Dend ) {
+
+    // std::cout << "\n--------counter[" << cmpCount / 2 << "]---------\n";
     std::cout << "Before: ";
-    for (size_t x = BEGIN; x < container.size(); x++)
-        std::cout << container[x] << " ";
+    for (size_t x = BEGIN; x < Dcontainer.size(); x++)
+        std::cout << Dcontainer[x] << " ";
     std::cout << std::endl << "After: ";
-    for (size_t x = BEGIN; x < copyContainer.size(); x++)
-        std::cout << copyContainer[x] << " ";
-    std::cout << std::endl << "Time to process a range of " << container.size() << " elements with std::vector : " << (double)(end - start) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
+    for (size_t x = BEGIN; x < DcopyContainer.size(); x++)
+        std::cout << DcopyContainer[x] << " ";
+    std::cout << std::endl << "Time to process a range of " << Dcontainer.size() << " elements with std::vector : " << (double)(end - start) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
+    std::cout << "Time to process a range of " << Dcontainer.size() << " elements with std::deque : " << (double)(Dend - Dstart) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:39 by hait-hsa          #+#    #+#             */
-/*   Updated: 2024/01/01 20:22:27 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/01 20:56:37 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #define BEGIN 0
 #define NEXT 1
 #define RANGE 2
+
+#define MAX 1000
 
 #define RED "\033[31m"    // Set the text to the color red
 #define GREEN "\033[32m"  // Set the text to the color green
@@ -56,12 +58,20 @@ class PmergeMe {
         // PmergeMe & operator=(const PmergeMe & other);
         void    inputParser(std::string str);
         void    inputCheckToConvert( void );
-        static  bool    vecCmp(std::vector<int> a, std::vector<int> b);
         void    mergeInsertionSort( void );
         void    containerToMainPend( void );
         void    containerToPaires( void );
         void    insertPendToMain( void );
-            //debugging function
-        void    print( clock_t start, clock_t end );
+        static  bool    vecCmp(std::vector<int> a, std::vector<int> b);
+        // deque
+        void    DinputParser(std::string str);
+        void    DinputCheckToConvert( void );
+        void    DmergeInsertionSort( void );
+        void    DcontainerToMainPend( void );
+        void    DcontainerToPaires( void );
+        void    DinsertPendToMain( void );
+        static  bool    deqCmp(std::deque<int> a, std::deque<int> b);
+        //debugging functions
+        void    print( clock_t start, clock_t end, clock_t Dstart, clock_t Dend );
         bool    check( void );
 };
