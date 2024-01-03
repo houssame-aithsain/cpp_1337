@@ -2,7 +2,6 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
-#include <cstdlib>
 #include "Contact.hpp"
 
 #define CHECK 0
@@ -12,6 +11,7 @@ class PhoneBook{
     private:
         static int numb;
         Contact contacts[8];
+        int IsDigit(std::string line);
     public:
         void AddContact(void);
         void Usage(void);

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 21:29:40 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/22 20:29:43 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:57:00 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void main1() {
     ++it;
     }
     std::stack<int, std::vector<int> > s(mstack);
-    
 }
 
 void main2()

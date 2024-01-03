@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:25:31 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/22 16:28:55 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:28:43 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #define C_FAILED -963
 
 #define OP {"+", "-", "/", "*"}
+#define ifOP(op)((op == "+" || op == "-" || op == "/" || op == "*") ? true : false)
 
 #define INVALIDE "Error: invalide operation"
 #define BADiNPUT "Error: bad input"
@@ -30,17 +31,13 @@
 class RPN
 {
     private:
-        std::stack<std::string> Stack;
-        std::stack<std::string> container;
+        std::stack<int> Stack;
         std::string Operator;
-        std::string firstNumb;
-        std::string secondNumb;
     public:
         ~RPN( void );
         RPN( void );
         RPN( const RPN & other );
         RPN & operator=(const RPN & other);
         void inputParser(std::string agv);
-        bool operationChecker( void );
         int calculation(int first, int second);
 };

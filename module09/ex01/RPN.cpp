@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:25:29 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/25 13:20:52 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:30:42 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ RPN::RPN( const RPN & other ) {
 RPN & RPN::operator=(const RPN & other) {
 
     if (this != &other) {
-        firstNumb = other.firstNumb;
-        secondNumb = other.secondNumb;
         Operator = other.Operator;
         Stack = other.Stack;
-        container = other.container;
     }
     return (*this);
 }
@@ -38,6 +35,8 @@ int RPN::calculation(int first, int second) {
     int i = 0;
     std::string opARR[] = OP;
 
+    if (Operator[0] == '/' && !second)
+        throw BADiNPUT;
     for (; i < 4; i++)
         if (Operator == opARR[i])
             break;
@@ -55,64 +54,31 @@ int RPN::calculation(int first, int second) {
     }
 }
 
-bool RPN::operationChecker( void ) {
-
-    char *ptr;
-
-    if (!is_operator(Operator[0]) || Operator.empty())
-        return false;
-        // check for first number
-    if (firstNumb[0] == '+' || firstNumb[0] == '-') {
-        if (!is_number(firstNumb[1]) || firstNumb.empty())
-            return false;
-    } else
-        if (!is_number(firstNumb[0]) || firstNumb.empty())
-            return false;
-        // check for second number
-    if (secondNumb[0] == '+' || secondNumb[0] == '-') {
-        if (!is_number(secondNumb[1]) || secondNumb.empty())
-            return false;
-    } else
-        if (!is_number(secondNumb[0]) || secondNumb.empty())
-            return false;
-    std::strtod(firstNumb.c_str(), &ptr);
-    if (std::strcmp(ptr, ""))
-        return false;
-    std::strtod(secondNumb.c_str(), &ptr);
-    if (std::strcmp(ptr, ""))
-        return false;
-    return true;
-}
-
 void RPN::inputParser(std::string argv) {
 
+    int result;
     std::string value;
-
     std::stringstream s(argv);
-    while (s >> value)
-        Stack.push(value);
-    if (Stack.size() < 3)
+
+    if (s.fail())
         throw BADiNPUT;
-    while (container.size() || Stack.size() >= 3) {
-        if (Stack.size() == 3) {
-            Operator = Stack.top();
+    while (s >> value) {
+        if (value.size() == 1 && Stack.size() > 1 && is_operator(value[0])) {
+            if (Stack.size() < 2)
+                throw BADiNPUT;
+            Operator = value;
+            result = Stack.top();
             Stack.pop();
-            firstNumb = Stack.top();
+            result = calculation(Stack.top(), result);
             Stack.pop();
-            secondNumb = Stack.top();
-            Stack.pop();
-            if (!operationChecker())
-                throw INVALIDE;
-            Stack.push(std::to_string(calculation(std::atoi(secondNumb.c_str()), std::atoi(firstNumb.c_str()))));
-        } while (Stack.size() > 3) {
-            container.push(Stack.top());
-            Stack.pop();
-        } while (container.size() && Stack.size() < 3) {
-            Stack.push(container.top());
-            container.pop();
-        }
+            Stack.push(result);
+        } else if ((value.size() == 1 && is_number(value[0])) || (value.size() == 2 && value[0] == '+' && is_number(value[1])))
+            Stack.push(std::atoi(value.c_str()));
+        else
+            throw BADiNPUT;
     }
-    if (Stack.size() != 1)
+    if (Stack.size() == 1)
+        std::cout << Stack.top() << std::endl;
+    else
         throw BADiNPUT;
-    std::cout << Stack.top() << std::endl;
 }

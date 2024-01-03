@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:39 by hait-hsa          #+#    #+#             */
-/*   Updated: 2024/01/01 20:56:37 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:39:13 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <deque>
+#include <iomanip>
 
 #define Ncheker(n) ((n >= '0' && n <= '9') ? true : false)
 #define USAGE "USAGE: PmergeMe [random numbers]"
@@ -54,8 +55,8 @@ class PmergeMe {
     public:
         ~PmergeMe( void );
         PmergeMe( void );
-        // PmergeMe( const PmergeMe & other );
-        // PmergeMe & operator=(const PmergeMe & other);
+        PmergeMe( const PmergeMe & other );
+        PmergeMe & operator=(const PmergeMe & other);
         void    inputParser(std::string str);
         void    inputCheckToConvert( void );
         void    mergeInsertionSort( void );
@@ -64,7 +65,6 @@ class PmergeMe {
         void    insertPendToMain( void );
         static  bool    vecCmp(std::vector<int> a, std::vector<int> b);
         // deque
-        void    DinputParser(std::string str);
         void    DinputCheckToConvert( void );
         void    DmergeInsertionSort( void );
         void    DcontainerToMainPend( void );
@@ -74,4 +74,5 @@ class PmergeMe {
         //debugging functions
         void    print( clock_t start, clock_t end, clock_t Dstart, clock_t Dend );
         bool    check( void );
+        bool    Dcheck( void );
 };

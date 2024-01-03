@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:54:08 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/25 13:05:17 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:03:00 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,33 @@ void Harl::error( void ) {
 void Harl::complain( std::string level ) {
 
     int i = 0;
-    std::string name[4];
+    std::string name[5];
     Harl::PointerToFunction ptr[4];
 
     name[0] = "DEBUG";
     name[1] = "INFO";
     name[2] = "WARNING";
     name[3] = "ERROR";
+    name[4] = "";
 
     ptr[0] = &Harl::debug;
     ptr[1] = &Harl::info;
     ptr[2] = &Harl::warning;
     ptr[3] = &Harl::error;
 
-    for (; name[i] != level && i < 3; i++);
+    for (; name[i] != level && i < 4; i++){};
     
-    while (name[i] == level) {
-        switch(i) {
-        case 0:
-            (this->*ptr[0])();
-        case 1:
-            (this->*ptr[1])();
-        case 2:
-            (this->*ptr[2])();
-        case 3:
-            (this->*ptr[3])();
-        }
-        return ;
+    switch(i) {
+    case 0:
+        (this->*ptr[0])();
+    case 1:
+        (this->*ptr[1])();
+    case 2:
+        (this->*ptr[2])();
+    case 3:
+        (this->*ptr[3])();
+        break;
+    default:
+        this->printError();
     }
-    this->printError();
 }

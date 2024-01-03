@@ -14,13 +14,9 @@ int main(void)
         if (!str.compare("SEARCH"))
             Book.SearchForContact();
         std::cout << std::endl << "HOME$>\t";
-        std::cin >> str;
+        std::cin >> std::ws >> str;
         std::cout << std::endl;
         if (std::cin.eof())
-            exit(0);
-        if (std::cin.fail()){
-            std::cin.ignore();
-            std::cin.clear();
-        }
+            std::exit(0);
     }
 }

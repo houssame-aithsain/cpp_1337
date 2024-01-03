@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:39:42 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/25 10:22:00 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:18:43 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int main() {
 
-    Zombie z, *x;
+    Zombie *x;
 
-    x = z.newZombie("foo");
+    x = newZombie("foo");
     x->announce();
-    z.randomChump("foo1");
+    randomChump("foo1");
     delete x;
 }

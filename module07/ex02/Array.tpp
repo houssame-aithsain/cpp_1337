@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:07:58 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/08 21:10:16 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:30:14 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ Array<T>::Array( unsigned int size ) : rr(new T[size]), n(size) {}
 template<typename T>
 Array<T>::Array(const Array<T> & other ) {
 
-    std::cout << "test" << std::endl;
     n = other.n;
     rr = new T[n];
     for (unsigned int i = 0; i < n; i++)

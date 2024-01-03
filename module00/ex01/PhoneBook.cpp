@@ -8,6 +8,22 @@ void PhoneBook::init(void){
         contacts[i].SetIndex(-1);
 }
 
+int PhoneBook::IsDigit(std::string line){
+
+    int i = 0;
+    for (; line[i]; i++){
+        if (!std::isdigit(line[i]))
+            return (-509);
+    }
+    i = 0;
+    for (; line[i] == '0'; i++);
+    if (!line[i] && i > 0)
+        return (0);
+    if (line[i] <= '9' && line[i] >= '0' && !line[i + 1])
+        return (line[i] - 48);
+    return (-509);
+}
+
 void PhoneBook::Usage()
 {
     std::cout << std::endl  << "Welcome to your PhoneBook." << std::endl << std::endl ;
@@ -20,7 +36,6 @@ void PhoneBook::Usage()
 
 void PhoneBook::AddContact()
 {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     contacts[numb].SetFname(contacts[numb].GetInput("+ First Name:       "));
     contacts[numb].SetLname(contacts[numb].GetInput("+ Last Name:        "));
     contacts[numb].SetNname(contacts[numb].GetInput("+ Nick Name:        "));
@@ -35,6 +50,7 @@ void PhoneBook::AddContact()
 void PhoneBook::SearchForContact(){
 
     Contact ccontacts;
+    std::string line;
     int index = -1;
     int status = true;
 
@@ -47,15 +63,14 @@ void PhoneBook::SearchForContact(){
         return ;
     while (index > 7 || index < 0 || !status){
         std::cout << "Please type the contact number to show: ";
-        std::cin >> index;
-        if (std::cin.eof())
-            exit(-9);
-        if (std::cin.fail()){
-            std::cin.clear();
-            std::cin.ignore();
+        std::getline(std::cin >> std::ws , line);
+        index = IsDigit(line);
+        if (index == -509)
             std::cout << "ERROR: wrong input!" << std::endl;
-            return ;
-        }
+        if (std::cin.fail())
+            std::cout << "ERROR: wrong input!" << std::endl;
+        if (std::cin.eof())
+            std::exit(-9);
         if (index >= 0 && index < 8)
             status = contacts[index].SearchIndex(contacts[index], SEARCH);
         if (!status || index < 0 || index > 7)

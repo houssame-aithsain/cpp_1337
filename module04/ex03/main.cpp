@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:43:35 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/21 13:12:05 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:29:30 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 void	test1()
 {
 	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(src->createMateria("ice"));
+	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	
 	ICharacter* me = new Character("me");
 	
 	AMateria* tmp;
-	src->createMateria("ice");
+	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
@@ -228,7 +228,7 @@ int main()
 	std::cout << "--------- test 10 ----------" << std::endl;
 	test10();
 	std::cout << "--------- test LEAKS ----------" << std::endl;
-	system("leaks -q brain");
+	// system("leaks -q brain");
 	return 0;
 }
 // void l()

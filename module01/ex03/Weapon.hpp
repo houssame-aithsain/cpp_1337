@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:17:09 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/23 20:17:11 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:30:56 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define WEAPON_H
 
 #include <iostream>
-#include <cstring>
 
 class Weapon{
     private:

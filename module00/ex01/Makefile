@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = PhoneBook.cpp Contact.cpp main.cpp
 
-NAME = PhoneBook
+NAME = phonebook
 
 RM = rm -rf
 

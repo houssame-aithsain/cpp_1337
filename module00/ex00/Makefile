@@ -2,9 +2,9 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = MegaPhone.cpp
+SRC = megaphone.cpp
 
-NAME = MegaPhone
+NAME = megaphone
 
 RM = rm -rf
 

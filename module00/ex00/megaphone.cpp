@@ -13,12 +13,10 @@ int main(int ac, char **av)
     {
         i = 0;
         str = av[j];
-        for (; str[i]; i++)
-        {
+        for (; str[i]; i++){
             str[i] = std::toupper(str[i]);
         }
         std::cout << str;
     }
-    std::cout << std::endl;
     return (EXIT_SUCCESS);
 }

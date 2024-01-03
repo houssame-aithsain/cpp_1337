@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:16:49 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/10/25 11:27:43 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:37:22 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void HumanB::attack(){
 
-    std::cout << this->name << " attacks with their " << Sclub->getType() << std::endl;
+    if (Sclub)
+        std::cout << this->name << " attacks with their " << Sclub->getType() << std::endl;
 }
 
 HumanB::HumanB(const std::string& str){

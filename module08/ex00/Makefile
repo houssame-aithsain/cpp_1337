@@ -6,7 +6,7 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/09 12:47:00 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/15 15:25:52 by hait-hsa         ###   ########.fr        #
+#    Updated: 2023/12/13 20:43:07 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ RM			=	rm -rf
 
 OBJS		=	$(SRC:.cpp=.o)
 
-
 all			:	$(NAME)
+
 $(NAME)		:	$(OBJS) $(HEADERS)
 				$(CC) $(CXXFLAGS) $(OBJS) -o $(NAME)
 

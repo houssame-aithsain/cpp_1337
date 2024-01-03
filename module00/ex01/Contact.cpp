@@ -43,9 +43,9 @@ std::string Contact::GetInput(std::string str){
 
     while (empty){
         std::cout << str << std::flush;
-        std::getline(std::cin, input);
+        std::getline(std::cin >> std::ws, input);
         if (std::cin.eof())
-            exit(-99);
+            std::exit(-99);
         if (!input.empty())
             empty = false;
     }

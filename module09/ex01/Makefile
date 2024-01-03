@@ -6,13 +6,13 @@
 #    By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 12:05:37 by hait-hsa          #+#    #+#              #
-#    Updated: 2023/12/21 12:06:15 by hait-hsa         ###   ########.fr        #
+#    Updated: 2024/01/03 18:07:33 by hait-hsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
 
 SRC			=	main.cpp RPN.cpp
 HEADERS		=	RPN.hpp

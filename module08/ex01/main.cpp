@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:54:54 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/25 16:48:57 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:46:34 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,21 @@ void main3( void ) {
         std::vector<unsigned int> vec;
 
         srand(time(NULL));
-        Span sp = Span(0);
-        sp.addNumber(985);
-        sp.addNumber(0);
+        Span sp = Span(21);
+        sp.addNumber(10);
         // sp.addNumber(366);
-        for (unsigned int i = 0; i < 5; i++)
+        for (unsigned int i = 0; i < 20; i++)
             vec.push_back(rand() % 1000);
         sp.addRange(vec.begin(), vec.end());
         sp.printVec(vec);
-        // sp.printVec(vec);
-        // std::cout << "shortest span is: " << sp.shortestSpan() << std::endl;
-        // std::cout << "longest span is: " << sp.longestSpan() << std::endl;
+        std::cout << "shortest span is: " << sp.shortestSpan() << std::endl;
+        std::cout << "longest span is: " << sp.longestSpan() << std::endl;
+    }
+    catch(const char* str) {
+        std::cout << str << std::endl;
+    }
+    catch (std::exception & e) {
+        std::cout << e.what() << std::endl;
     }
     catch(...) {
         std::cout << "error has been detected!" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:18:59 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/30 21:53:41 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:31:45 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ bool BitcoinExchange::tokenChecker( std::list<std::pair<std::string, std::string
     }
     for (size_t i = 0; i < value.size(); i++) {
         //check for spaces && pipes
+        if (value.size() >= 2 && value[1] == '.')
+            return false;
         if (value[i] == '.')
             pointCount++;
         if (i == 0 && value[i] == SPACE)
@@ -146,7 +148,7 @@ bool BitcoinExchange::formatChecker(std::string value) {
 
     std::string toNumber;
     std::string tmp;
-    // check date format
+
     std::stringstream s(value);
     for (int i = 0; std::getline(s, tmp, '-') && i < 3; i++) {
         if (i == 0 && tmp.size() != 4)
@@ -170,9 +172,19 @@ void BitcoinExchange::BitcoinExchangePrinter( void ) {
 
     std::cout << std::setprecision(std::numeric_limits<double>::digits10 + 1);
     std::list<std::pair<std::string, std::string> >::iterator it = userFile.begin();
-    if (it != userFile.end())
-        it++;
     for (; it != userFile.end(); it++) {
+        if (it == userFile.begin()) {
+            if (!tokenChecker(it) || !formatChecker(it->first)) {
+                tokenCleaner(it);
+                if (it->first == "date" && it->second == "value") {
+                    std::cout << "date | value" << std::endl;
+                    continue;
+                } else {
+                    std::cout << badInput << it->first << std::endl;
+                    continue;
+                }
+            }
+        }
         if (!tokenChecker(it) || !formatChecker(it->first)) {
             std::cout << badInput << it->first << std::endl;
             continue;

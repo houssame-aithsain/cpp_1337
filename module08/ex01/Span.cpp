@@ -6,7 +6,7 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:10:01 by hait-hsa          #+#    #+#             */
-/*   Updated: 2023/12/25 16:50:35 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:20:42 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void Span::addRange(const std::vector<unsigned int>::iterator begin, const std::
 
 void Span::printVec(std::vector<unsigned int> vec) {
 
-    // std::cout << "copy vector values: " << std::endl;
-    // for (std::vector<unsigned int>::iterator it = vec.begin(); it != vec.end(); it++)
-    //     std::cout << *it << std::endl;
+    std::cout << "copy vector values: " << std::endl;
+    for (std::vector<unsigned int>::iterator it = vec.begin(); it != vec.end(); it++)
+        std::cout << *it << std::endl;
     std::cout << "original vector values: " << std::endl;
     for (std::vector<unsigned int>::iterator it = nArr.begin(); it != nArr.end(); it++)
         std::cout << *it << std::endl;

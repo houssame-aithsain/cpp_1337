@@ -6,56 +6,47 @@
 /*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:45:36 by hait-hsa          #+#    #+#             */
-/*   Updated: 2024/01/01 21:53:09 by hait-hsa         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:02:22 by hait-hsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-bool PmergeMe::check( void ) {
-
-    for (size_t i = BEGIN; i < container.size(); i++) {
-        if (i + NEXT < container.size() && container[i] > container[i + NEXT])
-            return(false);
-    }
-    for (size_t i = BEGIN; i < container.size();) {
-        for (size_t j = BEGIN; j < copyContainer.size(); j++) {
-            if (container[i] == copyContainer[j]) {
-                copyContainer.erase(copyContainer.begin() + j);
-                container.erase(container.begin() + i);
-                i = BEGIN;
-                break;
-            }
-            else {
-                i++;
-                break;
-            }
-        }
-    }
-    if (container.empty() && copyContainer.empty())
-        return(true);
-    return(false);
-}
-
 size_t cmpCount = BEGIN;
 
-PmergeMe::~PmergeMe( void ) {
-
-    if (check())
-        std::cout << GREEN << "<<<<<ALL GOOD>>>>" << std::endl;
-    else
-        std::cout << RED << "<<<<oo0OOPS>>>>" << std::endl;
-}
+PmergeMe::~PmergeMe( void ) {}
 
 PmergeMe::PmergeMe( void ) : count(NEXT) {
 
 }
-// PmergeMe::PmergeMe( const PmergeMe & other ) {
 
-// }
-// PmergeMe & PmergeMe::operator=(const PmergeMe & other) {
+PmergeMe::PmergeMe( const PmergeMe & other ) {
 
-// }
+    *this = other;
+}
+
+PmergeMe & PmergeMe::operator=(const PmergeMe & other) {
+
+    if (this != &other) {
+        count =  other.count;
+        // vecto
+        sNumbers =  other.sNumbers;
+        container =  other.container;
+        copyContainer =  other.copyContainer ;
+        paires =  other.paires;
+        mainChain =  other.mainChain;
+        pendChain =  other.pendChain ;
+        tmp =  other.tmp;
+        // deque
+        Dcontainer =  other.Dcontainer;
+        DcopyContainer =  other.DcopyContainer;
+        Dpaires =  other.Dpaires;
+        DmainChain =  other.DmainChain;
+        DpendChain =  other.DpendChain;
+        Dtmp =  other.Dtmp;
+    }
+    return (*this);
+}
 
 void PmergeMe::inputParser(std::string str) {
 
@@ -68,7 +59,6 @@ void    PmergeMe::inputCheckToConvert( void ) {
     std::stringstream s(sNumbers);
     std::vector<int> tmp;
 
-
     while (s >> value && value.size()) {
         for (size_t i = BEGIN; i < value.size(); i++) {
             if (!Ncheker(value[i]))
@@ -76,8 +66,6 @@ void    PmergeMe::inputCheckToConvert( void ) {
         }
         container.push_back(std::atoi(value.c_str()));
     }
-    if (container.size() > MAX)
-        throw "too much input";
     copyContainer = container;
 }
 
@@ -114,7 +102,7 @@ void    PmergeMe::containerToMainPend( void ) {
 void    PmergeMe::insertPendToMain( void ) {
 
     // range
-    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767};
+    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, 131071, 262143, 524287, 1048575, 2097151, 4194303};
     int ti[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202};
     std::vector<int> rangeInsertion(ri, ri + (sizeof(ri) / sizeof(ri[BEGIN])));
     std::vector<int> totalInsertion(ti, ti + (sizeof(ti) / sizeof(ti[BEGIN])));
@@ -215,8 +203,6 @@ void    PmergeMe::DinputCheckToConvert( void ) {
         }
         Dcontainer.push_back(std::atoi(value.c_str()));
     }
-    if (Dcontainer.size() > MAX)
-        throw "too much input";
     DcopyContainer = Dcontainer;
 }
 
@@ -252,7 +238,7 @@ void    PmergeMe::DcontainerToMainPend( void ) {
 
 void    PmergeMe::DinsertPendToMain( void ) {
 
-    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767};
+    int ri[] = {3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, 131071, 262143, 524287, 1048575, 2097151, 4194303};
     int ti[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050, 1398102, 2796202};
     std::deque<int> rangeInsertion(ri, ri + (sizeof(ri) / sizeof(ri[BEGIN])));
     std::deque<int> totalInsertion(ti, ti + (sizeof(ti) / sizeof(ti[BEGIN])));
@@ -341,13 +327,13 @@ bool PmergeMe::deqCmp(std::deque<int> a, std::deque<int> b) {
 
 void PmergeMe::print( clock_t start, clock_t end, clock_t Dstart, clock_t Dend ) {
 
-    // std::cout << "\n--------counter[" << cmpCount / 2 << "]---------\n";
     std::cout << "Before: ";
-    for (size_t x = BEGIN; x < Dcontainer.size(); x++)
-        std::cout << Dcontainer[x] << " ";
+    for (size_t x = BEGIN; x < copyContainer.size(); x++)
+        std::cout << copyContainer[x] << " ";
     std::cout << std::endl << "After: ";
-    for (size_t x = BEGIN; x < DcopyContainer.size(); x++)
-        std::cout << DcopyContainer[x] << " ";
-    std::cout << std::endl << "Time to process a range of " << Dcontainer.size() << " elements with std::vector : " << (double)(end - start) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
-    std::cout << "Time to process a range of " << Dcontainer.size() << " elements with std::deque : " << (double)(Dend - Dstart) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
+    for (size_t x = BEGIN; x < container.size(); x++)
+        std::cout << container[x] << " ";
+    std::cout << std::endl << "Time to process a range of " << container.size() << " elements with std::vector : " << std::setprecision(std::numeric_limits<double>::digits10 + 1) << static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
+    std::cout << "Time to process a range of " << Dcontainer.size() << " elements with std::deque : " << std::setprecision(std::numeric_limits<double>::digits10 + 1) << static_cast<double>(Dend - Dstart) / CLOCKS_PER_SEC * 1e6 << "us" << std::endl;
+    // std::cout << GREEN << "\n--------CMP[" << cmpCount / RANGE << "]---------\n";
 }
