@@ -29,7 +29,7 @@ PmergeMe & PmergeMe::operator=(const PmergeMe & other) {
 
     if (this != &other) {
         count =  other.count;
-        // vecto
+        // vector
         sNumbers =  other.sNumbers;
         container =  other.container;
         copyContainer =  other.copyContainer ;
